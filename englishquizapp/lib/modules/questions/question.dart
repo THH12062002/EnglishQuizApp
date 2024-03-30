@@ -1,4 +1,4 @@
-import 'package:englishquizapp/modules/login/login.dart';
+import 'package:englishquizapp/modules/home/home.dart';
 import 'package:englishquizapp/modules/questions/blocks/answer_block.dart';
 import 'package:englishquizapp/modules/questions/blocks/question_block.dart';
 import 'package:englishquizapp/modules/questions/blocks/tools_block.dart';
@@ -32,11 +32,11 @@ class Question extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const Login()),
+                    MaterialPageRoute(builder: (context) => const Home()),
                   );
                 },
                 child: const Text(
-                  'Back to Login',
+                  'Back to Home',
                   style: TextStyle(
                     color: Colors.yellow,
                     fontSize: 16,

@@ -2,7 +2,7 @@ import 'package:englishquizapp/modules/signup/widgets/signup_widget.dart';
 import 'package:englishquizapp/modules/signup/widgets/email_widget.dart';
 import 'package:englishquizapp/modules/signup/widgets/password_widget.dart';
 import 'package:englishquizapp/modules/signup/widgets/login_widget.dart';
-import 'package:englishquizapp/modules/signup/widgets/confirm_widget.dart';
+import 'package:englishquizapp/modules/signup/widgets/username_widget.dart';
 import 'package:flutter/material.dart';
 
 class FormBlock extends StatelessWidget {
@@ -22,11 +22,11 @@ class FormBlock extends StatelessWidget {
       ),
       child: const Column(
         children: [
+          UsernameWidget(),
+          SizedBox(height: 20),
           EmailWidget(),
           SizedBox(height: 20),
           PasswordWidget(),
-          SizedBox(height: 20),
-          ConfirmWidget(),
           SizedBox(height: 40),
           SignupWidget(),
           SizedBox(height: 40), // Add this line (1/2
