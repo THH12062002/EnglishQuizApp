@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "981487120365",
+    "firebase_url": "https://hsuengquizapp-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "hsuengquizapp",
+    "storage_bucket": "hsuengquizapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:981487120365:android:e142941600d361dc7c41e4",
+        "android_client_info": {
+          "package_name": "com.example.englishquizapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCphmDnuuxw9KyfJ95SMWAp0nPhpGY7w48"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
