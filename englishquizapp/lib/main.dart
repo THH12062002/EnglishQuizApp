@@ -3,7 +3,7 @@ import 'package:englishquizapp/modules/quiz.dart';
 import 'package:englishquizapp/showaccount.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
+import 'data/service/firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,5 +12,5 @@ void main() async {
   );
   FirebaseFirestore.instance.settings =
       const Settings(persistenceEnabled: true);
-  runApp(ShowAccount());
+  runApp(const Quiz());
 }

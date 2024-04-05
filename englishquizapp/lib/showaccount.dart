@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:englishquizapp/database.dart';
-import 'package:englishquizapp/database_service.dart';
-import 'package:englishquizapp/user.dart';
+import 'package:englishquizapp/data/service/database_service.dart';
+import 'package:englishquizapp/data/models/user.dart';
 import 'package:flutter/material.dart';
 
 class ShowAccount extends StatelessWidget {

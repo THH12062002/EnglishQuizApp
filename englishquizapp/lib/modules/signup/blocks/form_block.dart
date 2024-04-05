@@ -10,6 +10,8 @@ class FormBlock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController email = TextEditingController();
+
     return Container(
       padding: const EdgeInsets.only(top: 50),
       height: 600,
@@ -20,11 +22,11 @@ class FormBlock extends StatelessWidget {
           topRight: Radius.circular(20),
         ),
       ),
-      child: const Column(
+      child: Column(
         children: [
           UsernameWidget(),
           SizedBox(height: 20),
-          EmailWidget(),
+          EmailWidget(emailController: email),
           SizedBox(height: 20),
           PasswordWidget(),
           SizedBox(height: 40),

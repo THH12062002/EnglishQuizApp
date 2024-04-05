@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:englishquizapp/user.dart';
+import 'package:englishquizapp/data/models/user.dart';
 
 const String USER_COLLECTION = 'users';
 
@@ -15,10 +15,6 @@ class DatabaseService {
             ),
         toFirestore: (user, _) => user.toJson());
   }
-
-  // Stream<QuerySnapshot> getUsers() {
-  //   return _usersRef.snapshots();
-  // }
 
   Future<List<User>> fetchData() async {
     try {
