@@ -23,10 +23,10 @@ class Question extends StatelessWidget {
             children: [
               const SizedBox(height: 50),
               const ToolsBlock(),
-              const SizedBox(height: 230),
-              const QuestionBlock(),
+              const SizedBox(height: 180),
+              QuestionBlock(),
               const SizedBox(height: 30),
-              const AnswerBlock(),
+              AnswerBlock(),
               const SizedBox(height: 20),
               TextButton(
                 onPressed: () {

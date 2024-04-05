@@ -21,7 +21,7 @@ class DatabaseService {
       // Access the collection named 'users'
       CollectionReference users = _firestore.collection(USER_COLLECTION);
 
-      // Query for documents
+      // Query for document
       QuerySnapshot querySnapshot = await users.get();
 
       // Iterate through documents and create User objects
