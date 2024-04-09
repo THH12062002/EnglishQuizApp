@@ -2,6 +2,7 @@ import 'package:englishquizapp/modules/home/home.dart';
 import 'package:englishquizapp/modules/questions/blocks/answer_block.dart';
 import 'package:englishquizapp/modules/questions/blocks/question_block.dart';
 import 'package:englishquizapp/modules/questions/blocks/tools_block.dart';
+import 'package:englishquizapp/modules/questions/question_list.dart';
 import 'package:flutter/material.dart';
 
 class Question extends StatelessWidget {
@@ -24,9 +25,10 @@ class Question extends StatelessWidget {
               const SizedBox(height: 50),
               const ToolsBlock(),
               const SizedBox(height: 180),
-              QuestionBlock(),
-              const SizedBox(height: 30),
-              AnswerBlock(),
+              // QuestionBlock(),
+              QuestionList(),
+              // const SizedBox(height: 30),
+              // AnswerBlock(),
               const SizedBox(height: 20),
               TextButton(
                 onPressed: () {

@@ -20,10 +20,12 @@ class AnswerBlock extends StatelessWidget {
             return Text('Error: ${snapshot.error}');
           } else {
             List<Questions> answerList = snapshot.data ?? [];
-            answers.add(answerList[0].ans1);
-            answers.add(answerList[0].ans2);
-            answers.add(answerList[0].ans3);
-            answers.add(answerList[0].ans4);
+            // if (answerList.isNotEmpty) {
+            //   answers.add(answerList[0].ans1);
+            //   answers.add(answerList[0].ans2);
+            //   answers.add(answerList[0].ans3);
+            //   answers.add(answerList[0].ans4);
+            // }
             return SizedBox(
               height: 400,
               child: ListView.builder(
