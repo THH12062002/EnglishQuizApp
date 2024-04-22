@@ -2,7 +2,7 @@
 
 import 'package:englishquizapp/data/models/question.dart';
 import 'package:englishquizapp/data/service/question_service.dart';
-import 'package:englishquizapp/question_viewer.dart';
+import 'package:englishquizapp/modules/questions/blocks/question_viewer.dart';
 import 'package:flutter/material.dart';
 
 class QuestionList extends StatelessWidget {

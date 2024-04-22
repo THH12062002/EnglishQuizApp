@@ -1,12 +1,10 @@
 import 'package:englishquizapp/modules/home/home.dart';
-import 'package:englishquizapp/modules/questions/blocks/answer_block.dart';
-import 'package:englishquizapp/modules/questions/blocks/question_block.dart';
 import 'package:englishquizapp/modules/questions/blocks/tools_block.dart';
-import 'package:englishquizapp/modules/questions/question_list.dart';
+import 'package:englishquizapp/modules/questions/blocks/question_list.dart';
 import 'package:flutter/material.dart';
 
-class Question extends StatelessWidget {
-  const Question({super.key});
+class QuestionScreen extends StatelessWidget {
+  const QuestionScreen({super.key});
 
   //final void Function() ;
 

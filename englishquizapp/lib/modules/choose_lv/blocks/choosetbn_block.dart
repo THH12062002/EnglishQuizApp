@@ -12,7 +12,7 @@ class ChooseBtnBlock extends StatelessWidget {
     return ElevatedButton(
       onPressed: () {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Question()));
+            context, MaterialPageRoute(builder: (context) => QuestionScreen()));
       },
       style: ElevatedButton.styleFrom(
         shape: RoundedRectangleBorder(

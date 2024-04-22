@@ -1,6 +1,8 @@
+// ignore_for_file: constant_identifier_names
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:englishquizapp/data/models/question.dart';
-import 'package:englishquizapp/data/models/quiz_question.dart';
+//import 'package:englishquizapp/data/models/quiz_question.dart';
 
 const String QUESTION_COLLECTION = 'questions';
 

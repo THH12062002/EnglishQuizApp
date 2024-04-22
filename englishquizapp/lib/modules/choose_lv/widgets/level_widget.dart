@@ -20,8 +20,8 @@ class LevelWidget extends StatelessWidget {
       ),
       child: TextButton(
         onPressed: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => Question()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => QuestionScreen()));
         },
         child: Text(
           level,

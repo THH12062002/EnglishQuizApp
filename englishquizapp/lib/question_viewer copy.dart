@@ -77,7 +77,7 @@ class _QuestionViewerState extends State<QuestionViewer> {
               },
               child: Container(
                 padding: EdgeInsets.all(10),
-                margin: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                margin: EdgeInsets.symmetric(horizontal: 10),
                 decoration: BoxDecoration(
                   color: answerStates[index] == null
                       ? Colors.transparent // No color if answer not selected
@@ -115,63 +115,32 @@ class _QuestionViewerState extends State<QuestionViewer> {
             );
           }),
         ),
+        SizedBox(height: 20),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  if (currentIndex > 0) currentIndex--;
+                });
+              },
+              child: Text('Previous'),
+            ),
+            SizedBox(width: 20),
+            ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  if (currentIndex < widget.questions.length - 1) {
+                    currentIndex++;
+                  }
+                });
+              },
+              child: Text('Next'),
+            ),
+          ],
+        ),
       ],
     );
   }
 }
-
-
-
-
-
-        // SizedBox(height: 20),
-        // Row(
-        //   mainAxisAlignment: MainAxisAlignment.center,
-        //   children: [
-        //     ElevatedButton(
-        //       onPressed: () {
-        //         setState(() {
-        //           if (currentIndex > 0) currentIndex--;
-        //         });
-        //       },
-        //       child: Text('Previous'),
-        //     ),
-        //     SizedBox(width: 20),
-        //     ElevatedButton(
-        //       onPressed: () {
-        //         setState(() {
-        //           if (currentIndex < widget.questions.length - 1)
-        //             currentIndex++;
-        //         });
-        //       },
-        //       child: Text('Next'),
-        //     ),
-        //   ],
-        // ),
-
-
-        // SizedBox(height: 20),
-        // Row(
-        //   mainAxisAlignment: MainAxisAlignment.center,
-        //   children: [
-        //     ElevatedButton(
-        //       onPressed: () {
-        //         setState(() {
-        //           if (currentIndex > 0) currentIndex--;
-        //         });
-        //       },
-        //       child: Text('Previous'),
-        //     ),
-        //     SizedBox(width: 20),
-        //     ElevatedButton(
-        //       onPressed: () {
-        //         setState(() {
-        //           if (currentIndex < widget.questions.length - 1)
-        //             currentIndex++;
-        //         });
-        //       },
-        //       child: Text('Next'),
-        //     ),
-        //   ],
-        // ),
-
