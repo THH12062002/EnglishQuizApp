@@ -1,12 +1,21 @@
+import 'package:englishquizapp/data/models/question.dart';
 import 'package:englishquizapp/modules/home/home.dart';
+import 'package:englishquizapp/modules/questions/blocks/question_state.dart';
 import 'package:englishquizapp/modules/questions/blocks/tools_block.dart';
 import 'package:englishquizapp/modules/questions/blocks/question_list.dart';
 import 'package:flutter/material.dart';
 
 class QuestionScreen extends StatelessWidget {
-  const QuestionScreen({super.key});
+  final List<Questions>? questions;
+  final List<QuestionState>? questionStates;
+  final int? initialIndex;
 
-  //final void Function() ;
+  const QuestionScreen({
+    Key? key,
+    this.questions,
+    this.questionStates,
+    this.initialIndex,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,10 +32,12 @@ class QuestionScreen extends StatelessWidget {
               const SizedBox(height: 50),
               const ToolsBlock(),
               const SizedBox(height: 180),
-              // QuestionBlock(),
-              QuestionList(),
-              // const SizedBox(height: 30),
-              // AnswerBlock(),
+              QuestionList(
+                questions: questions,
+                questionStates:
+                    questionStates, // Truyền questionStates vào QuestionList
+                initialIndex: initialIndex,
+              ),
               const SizedBox(height: 20),
               TextButton(
                 onPressed: () {

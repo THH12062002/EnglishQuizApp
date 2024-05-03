@@ -3,7 +3,6 @@
 
 //import 'package:englishquizapp/modules/choose_lv/chooselv.dart';
 import 'package:englishquizapp/modules/questions/blocks/question_state.dart';
-import 'package:englishquizapp/modules/questions/blocks/question_viewer.dart';
 import 'package:englishquizapp/modules/questions/question_screen.dart';
 //import 'package:englishquizapp/modules/questions/blocks/question_viewer.dart';
 import 'package:englishquizapp/modules/result/blocks/heading_result_block.dart';
@@ -43,7 +42,11 @@ class ReviewScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => QuestionScreen(),
+                    builder: (context) => QuestionScreen(
+                      questions: questions,
+                      questionStates: questionStates,
+                      initialIndex: index,
+                    ),
                   ),
                 );
               },

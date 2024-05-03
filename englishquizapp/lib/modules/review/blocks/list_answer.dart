@@ -8,17 +8,15 @@ class ListAnswer extends StatelessWidget {
   final List<Questions> questions;
   final List<QuestionState> questionStates;
   final List<int> flaggedQuestions;
-  final Function(int)
-      onEditPressed; // Thêm hàm callback để xử lý sự kiện chỉnh sửa
+  final Function(int) onEditPressed;
 
   const ListAnswer({
     Key? key,
     required this.questions,
     required this.questionStates,
     required this.flaggedQuestions,
-    required this.onEditPressed, // Thêm vào constructor
+    required this.onEditPressed,
   }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return ListView.builder(

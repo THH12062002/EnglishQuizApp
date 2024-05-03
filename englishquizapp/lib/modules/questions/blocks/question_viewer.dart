@@ -11,8 +11,15 @@ import 'package:englishquizapp/data/models/question.dart';
 
 class QuestionViewer extends StatefulWidget {
   final List<Questions> questions;
+  final List<QuestionState>? questionStates;
+  final int? initialIndex;
 
-  const QuestionViewer({super.key, required this.questions});
+  const QuestionViewer({
+    Key? key,
+    required this.questions,
+    this.questionStates,
+    this.initialIndex,
+  }) : super(key: key);
 
   @override
   _QuestionViewerState createState() => _QuestionViewerState();
@@ -29,15 +36,17 @@ class _QuestionViewerState extends State<QuestionViewer> {
   @override
   void initState() {
     super.initState();
+    currentIndex = widget.initialIndex ?? 0;
     selectedAnswerIndices = List.generate(widget.questions.length, (_) => []);
     questionFlags = List.generate(widget.questions.length, (_) => false);
-    questionStates = List.generate(widget.questions.length, (index) {
-      return QuestionState(
-        questionIndex: index,
-        selectedAnswerIndex: -1,
-        correctAnswerIndex: 0,
-      );
-    });
+    questionStates = widget.questionStates ??
+        List.generate(widget.questions.length, (index) {
+          return QuestionState(
+            questionIndex: index,
+            selectedAnswerIndex: -1,
+            correctAnswerIndex: 0,
+          );
+        });
   }
 
   @override
@@ -107,33 +116,6 @@ class _QuestionViewerState extends State<QuestionViewer> {
     );
   }
 
-  // void _moveToNextQuestion() {
-  //   setState(() {
-  //     if (currentIndex < widget.questions.length - 1) {
-  //       currentIndex++;
-  //     } else {
-  //       for (int i = 0; i < widget.questions.length; i++) {
-  //         questionStates[i] = QuestionState(
-  //           questionIndex: i,
-  //           selectedAnswerIndex: selectedAnswerIndices[i].isNotEmpty
-  //               ? selectedAnswerIndices[i][0]
-  //               : null,
-  //           correctAnswerIndex: 0,
-  //         );
-  //       }
-  //       Navigator.push(
-  //         context,
-  //         MaterialPageRoute(
-  //           builder: (context) => ResultScreen(
-  //             questions: widget.questions,
-  //             questionStates: questionStates,
-  //             flaggedQuestions: flaggedQuestions,
-  //           ),
-  //         ),
-  //       );
-  //     }
-  //   });
-  // }
   void _moveToNextQuestion() {
     setState(() {
       if (currentIndex < widget.questions.length - 1) {
