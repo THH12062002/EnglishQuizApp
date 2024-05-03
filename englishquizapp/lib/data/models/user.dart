@@ -1,42 +1,20 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+// ignore_for_file: prefer_collection_literals, unnecessary_new, unnecessary_this
 
 class User {
-  String username;
-  num password;
+  String? username;
+  String? password;
 
-  User({
-    required this.password,
-    required this.username,
-  });
+  User({this.username, this.password});
 
-  User.fromJson(Map<String, dynamic> json)
-      : this(
-          password: json['password']! as num,
-          username: json['username']! as String,
-        );
-
-  User copyWith({
-    num? password,
-    String? username,
-  }) {
-    return User(
-      password: password ?? this.password,
-      username: username ?? this.username,
-    );
+  User.fromJson(Map<String, dynamic> json) {
+    username = json['username'];
+    password = json['password'];
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      'username': username,
-      'password': password,
-    };
-  }
-
-  factory User.fromDocumentSnapshot(DocumentSnapshot snapshot) {
-    var data = snapshot.data() as Map<String, dynamic>;
-    return User(
-      username: data['username'] ?? '',
-      password: data['password'] ?? '',
-    );
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['username'] = this.username;
+    data['password'] = this.password;
+    return data;
   }
 }

@@ -4,8 +4,8 @@ import 'package:englishquizapp/modules/home/blocks/playbtn_block.dart';
 import 'package:englishquizapp/modules/home/blocks/title_block.dart';
 import 'package:flutter/material.dart';
 
-class Home extends StatelessWidget {
-  const Home({super.key});
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
 
   //final void Function() ;
 

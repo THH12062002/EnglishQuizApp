@@ -1,22 +1,9 @@
+import 'package:englishquizapp/modules/login/login_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class PasswordWidget extends StatefulWidget {
+class PasswordWidget extends GetView<LoginController> {
   const PasswordWidget({super.key});
-
-  @override
-  State<PasswordWidget> createState() {
-    return _PasswordWidget();
-  }
-}
-
-class _PasswordWidget extends State<PasswordWidget> {
-  final TextEditingController _passwordController = TextEditingController();
-
-  @override
-  void dispose() {
-    _passwordController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +14,7 @@ class _PasswordWidget extends State<PasswordWidget> {
       width: 320,
       height: 60,
       child: TextFormField(
-        controller: _passwordController,
+        controller: controller.passwordController,
         obscureText: true,
         decoration: const InputDecoration(
           hintText: 'Password',

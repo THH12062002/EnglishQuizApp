@@ -16,25 +16,25 @@ class DatabaseService {
         toFirestore: (user, _) => user.toJson());
   }
 
-  Future<List<User>> fetchData() async {
-    try {
-      // Access the collection named 'users'
-      CollectionReference users = _firestore.collection(USER_COLLECTION);
+  // Future<List<User>> fetchData() async {
+  //   try {
+  //     // Access the collection named 'users'
+  //     CollectionReference users = _firestore.collection(USER_COLLECTION);
 
-      // Query for document
-      QuerySnapshot querySnapshot = await users.get();
+  //     // Query for document
+  //     QuerySnapshot querySnapshot = await users.get();
 
-      // Iterate through documents and create User objects
-      List<User> userList = querySnapshot.docs
-          .map((doc) => User.fromDocumentSnapshot(doc))
-          .toList();
+  //     // Iterate through documents and create User objects
+  //     List<User> userList = querySnapshot.docs
+  //         .map((doc) => User.fromDocumentSnapshot(doc))
+  //         .toList();
 
-      return userList;
-    } catch (e) {
-      print('Error fetching data: $e');
-      return [];
-    }
-  }
+  //     return userList;
+  //   } catch (e) {
+  //     print('Error fetching data: $e');
+  //     return [];
+  //   }
+  // }
 
   void addUser(User user) async {
     _usersRef.add(user);
