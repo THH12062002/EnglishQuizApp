@@ -68,6 +68,7 @@ app.get("/questions", async (req, res) =>
         console.log(r.data());
         listData.push(r.data());
     })
+    console.log(listData);
     res.send(listData);
 })
 
@@ -92,14 +93,14 @@ app.get("/questions/easy", async (req, res) =>
         })
     }
     console.log(listData.slice(0, LIMIT).length);
-    res.send(listData.slice(0, LIMIT))
+    res.status(234).send(listData.slice(0, LIMIT));
 })
 
 app.get("/questions/medium", async (req, res) =>
 {
     var result = await getDocs(query(questionCol, where("difficulty", "==", "medium")));
     var listData = []
-    var LIMIT = 5;
+    var LIMIT = 10;
     
     while (listData.length < LIMIT)
     {
@@ -116,14 +117,14 @@ app.get("/questions/medium", async (req, res) =>
         })
     }
     console.log(listData.slice(0, LIMIT).length);
-    res.send(listData.slice(0, LIMIT))
+    res.status(234).send(listData.slice(0, LIMIT))
 })
 
 app.get("/questions/hard", async (req, res) =>
 {
     var result = await getDocs(query(questionCol, where("difficulty", "==", "hard")));
     var listData = []
-    var LIMIT = 5;
+    var LIMIT = 15;
     
     while (listData.length < LIMIT)
     {
@@ -140,7 +141,7 @@ app.get("/questions/hard", async (req, res) =>
         })
     }
     console.log(listData.slice(0, LIMIT).length);
-    res.send(listData.slice(0, LIMIT))
+    res.status(234).send(listData.slice(0, LIMIT))
 })
 
 app.post("/questions/post", async (req, res) =>

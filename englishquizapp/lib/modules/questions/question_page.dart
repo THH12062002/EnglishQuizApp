@@ -1,21 +1,22 @@
 import 'package:englishquizapp/data/models/question.dart';
-import 'package:englishquizapp/modules/home/home_page.dart';
+import 'package:englishquizapp/modules/questions/blocks/question_list.dart';
 import 'package:englishquizapp/modules/questions/blocks/question_state.dart';
 import 'package:englishquizapp/modules/questions/blocks/tools_block.dart';
-import 'package:englishquizapp/modules/questions/blocks/question_list.dart';
+import 'package:englishquizapp/modules/questions/question_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class QuestionPage extends StatelessWidget {
+class QuestionPage extends GetView<QuestionController> {
   final List<Questions>? questions;
   final List<QuestionState>? questionStates;
   final int? initialIndex;
 
   const QuestionPage({
-    Key? key,
+    super.key,
     this.questions,
     this.questionStates,
     this.initialIndex,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -41,10 +42,7 @@ class QuestionPage extends StatelessWidget {
               const SizedBox(height: 20),
               TextButton(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => HomePage()),
-                  );
+                  Get.toNamed('/chooselv');
                 },
                 child: const Text(
                   'Back to Home',

@@ -13,11 +13,11 @@ class QuestionList extends StatelessWidget {
   final int? initialIndex;
 
   QuestionList({
-    Key? key,
+    super.key,
     this.questions,
     this.questionStates,
     this.initialIndex,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

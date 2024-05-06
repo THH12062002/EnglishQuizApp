@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, library_private_types_in_public_api
 
 import 'package:englishquizapp/modules/questions/blocks/questionflaghandle.dart';
 import 'package:englishquizapp/modules/review/review_page.dart';
@@ -15,11 +15,11 @@ class QuestionViewer extends StatefulWidget {
   final int? initialIndex;
 
   const QuestionViewer({
-    Key? key,
+    super.key,
     required this.questions,
     this.questionStates,
     this.initialIndex,
-  }) : super(key: key);
+  });
 
   @override
   _QuestionViewerState createState() => _QuestionViewerState();
