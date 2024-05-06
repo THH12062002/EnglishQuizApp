@@ -1,7 +1,9 @@
+import 'package:englishquizapp/modules/signup/signup_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class UsernameWidget extends StatelessWidget {
-  const UsernameWidget({super.key});
+class PasswordWidget extends GetView<SignUpController> {
+  const PasswordWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,9 +14,11 @@ class UsernameWidget extends StatelessWidget {
       width: 320,
       height: 60,
       child: TextFormField(
+        controller: controller.passwordController,
+        obscureText: true,
         decoration: const InputDecoration(
-          hintText: 'Username',
-          prefixIcon: Icon(Icons.account_box),
+          hintText: 'Password',
+          prefixIcon: Icon(Icons.password_outlined),
           border: OutlineInputBorder(),
         ),
       ),

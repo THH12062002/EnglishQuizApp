@@ -2,8 +2,8 @@ import 'package:englishquizapp/modules/choose_lv/blocks/heading_block.dart';
 import 'package:englishquizapp/modules/choose_lv/blocks/level_block.dart';
 import 'package:flutter/material.dart';
 
-class ChooseLv extends StatelessWidget {
-  const ChooseLv({super.key});
+class ChooseLvPage extends StatelessWidget {
+  const ChooseLvPage({super.key});
 
   //final void Function() ;
 

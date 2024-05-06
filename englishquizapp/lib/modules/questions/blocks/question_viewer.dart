@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:englishquizapp/modules/questions/blocks/questionflaghandle.dart';
-import 'package:englishquizapp/modules/review/reviewscreen.dart';
+import 'package:englishquizapp/modules/review/review_page.dart';
 import 'package:flutter/material.dart';
 import 'package:englishquizapp/modules/questions/blocks/question_block.dart';
 import 'package:englishquizapp/modules/questions/blocks/question_state.dart';
@@ -133,7 +133,7 @@ class _QuestionViewerState extends State<QuestionViewer> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ReviewScreen(
+            builder: (context) => ReviewPage(
               questions: widget.questions,
               questionStates: questionStates,
               flaggedQuestions: flaggedQuestions,

@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:englishquizapp/modules/questions/question_screen.dart';
+import 'package:englishquizapp/modules/questions/question_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -20,8 +20,8 @@ class LevelWidget extends StatelessWidget {
       ),
       child: TextButton(
         onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => QuestionScreen()));
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => QuestionPage()));
         },
         child: Text(
           level,

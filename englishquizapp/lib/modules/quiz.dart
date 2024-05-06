@@ -1,12 +1,18 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:englishquizapp/modules/home/home.dart';
+import 'package:englishquizapp/modules/choose_lv/chooselv_binding.dart';
+import 'package:englishquizapp/modules/choose_lv/chooselv_page.dart';
 import 'package:englishquizapp/modules/home/home_binding.dart';
+import 'package:englishquizapp/modules/home/home_page.dart';
 import 'package:englishquizapp/modules/login/login_binding.dart';
 import 'package:englishquizapp/modules/login/login_page.dart';
-import 'package:get/get.dart';
+import 'package:englishquizapp/modules/questions/question_page.dart';
+import 'package:englishquizapp/modules/questions/widgets/question_binding.dart';
+import 'package:englishquizapp/modules/signup/signup_binding.dart';
+import 'package:englishquizapp/modules/signup/signup_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 class Quiz extends StatefulWidget {
   const Quiz({super.key});
@@ -39,6 +45,21 @@ class _QuizState extends State<Quiz> {
               page: () => HomePage(),
               binding: HomeBinding(),
             ),
+            GetPage(
+              name: '/chooselv',
+              page: () => ChooseLvPage(),
+              binding: ChooseLvBinding(),
+            ),
+            GetPage(
+              name: '/question',
+              page: () => QuestionPage(),
+              binding: QuestionBinding(),
+            ),
+            GetPage(
+              name: '/signup',
+              page: () => SignUpPage(),
+              binding: SignUpBinding(),
+            )
             // GetPage(name: '/second', page: () => Second()),
           ],
         );

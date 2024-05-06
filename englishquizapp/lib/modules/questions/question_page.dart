@@ -1,16 +1,16 @@
 import 'package:englishquizapp/data/models/question.dart';
-import 'package:englishquizapp/modules/home/home.dart';
+import 'package:englishquizapp/modules/home/home_page.dart';
 import 'package:englishquizapp/modules/questions/blocks/question_state.dart';
 import 'package:englishquizapp/modules/questions/blocks/tools_block.dart';
 import 'package:englishquizapp/modules/questions/blocks/question_list.dart';
 import 'package:flutter/material.dart';
 
-class QuestionScreen extends StatelessWidget {
+class QuestionPage extends StatelessWidget {
   final List<Questions>? questions;
   final List<QuestionState>? questionStates;
   final int? initialIndex;
 
-  const QuestionScreen({
+  const QuestionPage({
     Key? key,
     this.questions,
     this.questionStates,
@@ -43,7 +43,7 @@ class QuestionScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const HomePage()),
+                    MaterialPageRoute(builder: (context) => HomePage()),
                   );
                 },
                 child: const Text(

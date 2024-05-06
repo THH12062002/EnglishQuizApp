@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:englishquizapp/modules/questions/question_screen.dart';
+import 'package:englishquizapp/modules/questions/question_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -12,7 +12,7 @@ class ChooseBtnBlock extends StatelessWidget {
     return ElevatedButton(
       onPressed: () {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => QuestionScreen()));
+            context, MaterialPageRoute(builder: (context) => QuestionPage()));
       },
       style: ElevatedButton.styleFrom(
         shape: RoundedRectangleBorder(

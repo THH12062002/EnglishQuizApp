@@ -1,8 +1,9 @@
-import 'package:englishquizapp/modules/signup/signup.dart';
+import 'package:englishquizapp/modules/login/login_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class SingupWidget extends StatelessWidget {
+class SingupWidget extends GetView<LoginController> {
   const SingupWidget({super.key});
 
   @override
@@ -22,10 +23,7 @@ class SingupWidget extends StatelessWidget {
           ),
           TextButton(
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const SignUp()),
-              );
+              Get.toNamed('/signup');
             },
             child: Text(
               'Sign Up',

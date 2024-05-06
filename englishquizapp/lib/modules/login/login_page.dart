@@ -1,8 +1,10 @@
 import 'package:englishquizapp/modules/login/blocks/form_block.dart';
 import 'package:englishquizapp/modules/login/blocks/logo_block.dart';
+import 'package:englishquizapp/modules/login/login_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends GetView<LoginController> {
   const LoginPage({super.key});
 
   @override

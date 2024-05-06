@@ -1,24 +1,26 @@
 //import 'package:englishquizapp/modules/questions/question_screen.dart';
 // ignore_for_file: prefer_const_constructors
 
-import 'package:englishquizapp/modules/choose_lv/chooselv.dart';
+//import 'package:englishquizapp/modules/choose_lv/chooselv.dart';
 import 'package:englishquizapp/modules/questions/blocks/question_state.dart';
+import 'package:englishquizapp/modules/questions/question_page.dart';
+//import 'package:englishquizapp/modules/questions/blocks/question_viewer.dart';
 import 'package:englishquizapp/modules/result/blocks/heading_result_block.dart';
-import 'package:englishquizapp/modules/result/blocks/list_result.dart';
-import 'package:englishquizapp/modules/review/reviewscreen.dart';
+import 'package:englishquizapp/modules/result/result_page.dart';
+import 'package:englishquizapp/modules/review/blocks/list_answer.dart';
 import 'package:flutter/material.dart';
 import 'package:englishquizapp/data/models/question.dart';
 
-class ResultScreen extends StatelessWidget {
-  final List<Questions> questions;
+class ReviewPage extends StatelessWidget {
   final List<QuestionState> questionStates;
-  final List<int> flaggedQuestions; // Thêm tham số flaggedQuestions
+  final List<Questions> questions;
+  final List<int> flaggedQuestions;
 
-  const ResultScreen({
+  const ReviewPage({
     super.key,
-    required this.questions,
     required this.questionStates,
-    required this.flaggedQuestions, // Cập nhật constructor để nhận tham số flaggedQuestions
+    required this.questions,
+    required this.flaggedQuestions,
   });
 
   @override
@@ -32,20 +34,31 @@ class ResultScreen extends StatelessWidget {
           HeadingResultBlock(),
           SizedBox(height: 20),
           Expanded(
-            child: ListResult(
+            child: ListAnswer(
               questions: questions,
               questionStates: questionStates,
-              flaggedQuestions:
-                  flaggedQuestions, // Truyền tham số flaggedQuestions vào ListResult
+              flaggedQuestions: flaggedQuestions,
+              onEditPressed: (index) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => QuestionPage(
+                      questions: questions,
+                      questionStates: questionStates,
+                      initialIndex: index,
+                    ),
+                  ),
+                );
+              },
             ),
           ),
-          SizedBox(height: 5),
+          SizedBox(height: 30),
           ElevatedButton(
             onPressed: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ReviewScreen(
+                  builder: (context) => ResultPage(
                     questions: questions,
                     questionStates: questionStates,
                     flaggedQuestions: flaggedQuestions,
@@ -53,20 +66,9 @@ class ResultScreen extends StatelessWidget {
                 ),
               );
             },
-            child: Text('Return to Review Screen'),
+            child: Text('Submit Answer'),
           ),
-          SizedBox(height: 5),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ChooseLv(),
-                ),
-              );
-            },
-            child: Text('Restart Quiz'),
-          ),
+          SizedBox(height: 30),
         ],
       ),
     );

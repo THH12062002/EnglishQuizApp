@@ -1,4 +1,4 @@
-import 'package:englishquizapp/modules/choose_lv/chooselv.dart';
+import 'package:englishquizapp/modules/choose_lv/chooselv_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -15,7 +15,7 @@ class PlayBtnBlock extends StatelessWidget {
       onPressed: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const ChooseLv()),
+          MaterialPageRoute(builder: (context) => const ChooseLvPage()),
         );
       },
       style: ElevatedButton.styleFrom(
