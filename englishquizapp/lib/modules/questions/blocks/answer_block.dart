@@ -55,7 +55,7 @@ class _AnswerBlockState extends State<AnswerBlock> {
           },
           title: Text(
             widget.answers[index],
-            style: TextStyle(fontSize: 18),
+            style: const TextStyle(fontSize: 18),
           ),
         ),
       ),

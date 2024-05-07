@@ -6,7 +6,7 @@ import 'package:englishquizapp/data/models/question.dart';
 class QuestionBlock extends StatelessWidget {
   final Questions question;
 
-  const QuestionBlock({required this.question});
+  const QuestionBlock({super.key, required this.question});
 
   @override
   Widget build(BuildContext context) {

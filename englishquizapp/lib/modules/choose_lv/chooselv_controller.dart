@@ -22,6 +22,7 @@ class ChooseLvController extends GetxController {
           point: question.point,
           content: question.content,
           difficulty: question.difficulty,
+          currentIndex: questions.indexOf(question),
         );
         Get.to(QuestionPage());
       }
@@ -42,6 +43,7 @@ class ChooseLvController extends GetxController {
           point: question.point,
           content: question.content,
           difficulty: question.difficulty,
+          currentIndex: questions.indexOf(question),
         );
         Get.to(QuestionPage());
       }
@@ -62,6 +64,7 @@ class ChooseLvController extends GetxController {
           point: question.point,
           content: question.content,
           difficulty: question.difficulty,
+          currentIndex: questions.indexOf(question),
         );
         Get.to(QuestionPage());
       }

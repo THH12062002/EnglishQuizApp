@@ -2,9 +2,10 @@ import 'package:englishquizapp/data/models/question_model.dart';
 import 'package:englishquizapp/data/models/user.dart';
 import 'package:englishquizapp/data/network/api/api_url.dart';
 import 'package:englishquizapp/data/network/api/dio_client.dart';
+import 'package:get/get.dart';
 
 class Repository {
-  Future<User> loginUser(String email, String password) async {
+  Future<User?> loginUser(String email, String password) async {
     try {
       final response = await Api().post(
         ApiUrl.login,
@@ -20,8 +21,9 @@ class Repository {
       }
       return User();
     } catch (e) {
-      throw Exception(e.toString());
+      Get.snackbar("Thông báo", "Thông tin đăng nhập không chính xác");
     }
+    return null;
   }
 
   Future<User> registerUser(String email, String password) async {

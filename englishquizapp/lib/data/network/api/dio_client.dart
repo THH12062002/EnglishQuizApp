@@ -1,4 +1,4 @@
-// ignore_for_file: type_annotate_public_apis
+// ignore_for_file: type_annotate_public_apis, deprecated_member_use
 import 'package:curl_logger_dio_interceptor/curl_logger_dio_interceptor.dart';
 import 'package:dio/dio.dart';
 
@@ -21,7 +21,24 @@ class Api {
       CurlLoggerDioInterceptor(
         printOnSuccess: true,
       ),
+      // Thêm interceptor để xử lý mã trạng thái
+      InterceptorsWrapper(
+        onResponse: (response, handler) {
+          if (response.statusCode == 567) {
+            // Xử lý khi gặp mã trạng thái 567 ở đây
+            // Ví dụ: ném ra một ngoại lệ, hoặc xử lý khác
+            throw DioError(
+              requestOptions: response.requestOptions,
+              error:
+                  "Server error - the server failed to fulfil an apparently valid request",
+              response: response,
+            );
+          }
+          return handler.next(response);
+        },
+      ),
     });
+
     return dio;
   }
 

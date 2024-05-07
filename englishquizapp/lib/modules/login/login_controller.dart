@@ -26,11 +26,9 @@ class LoginController extends GetxController {
       Get.snackbar('Thông báo', 'Vui lòng nhập đầy đủ thông tin');
     } else {
       var user = await repository.loginUser(email, password);
-      if (user.email != null && user.password != null) {
+      if (user?.email != null && user?.password != null) {
         userStorage.saveUser(email, password);
         Get.toNamed('/home');
-      } else {
-        Get.snackbar('Thông báo', 'Thông tin đăng nhập không chính xác');
       }
     }
   }

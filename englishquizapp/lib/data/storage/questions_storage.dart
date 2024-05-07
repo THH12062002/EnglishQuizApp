@@ -12,6 +12,7 @@ class QuestionStorage extends GetxController {
     String? point,
     String? content,
     String? difficulty,
+    int? currentIndex,
   }) {
     box.write('ans1', ans1);
     box.write('ans2', ans2);
@@ -20,6 +21,7 @@ class QuestionStorage extends GetxController {
     box.write('point', point);
     box.write('content', content);
     box.write('difficulty', difficulty);
+    box.write('currentIndex', currentIndex);
   }
 
   String? get ans1 => box.read('ans1');
@@ -29,4 +31,5 @@ class QuestionStorage extends GetxController {
   String? get point => box.read('point');
   String? get content => box.read('content');
   String? get difficulty => box.read('difficulty');
+  int? get currentIndex => box.read('currentIndex');
 }
