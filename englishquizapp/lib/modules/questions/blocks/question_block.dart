@@ -1,7 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:flutter/material.dart';
 import 'package:englishquizapp/data/models/question.dart';
+import 'package:englishquizapp/data/storage/questions_storage.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class QuestionBlock extends StatelessWidget {
   final Questions question;
@@ -10,10 +12,11 @@ class QuestionBlock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    QuestionStorage userStorage = Get.find<QuestionStorage>();
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10.0),
       child: Text(
-        question.content,
+        userStorage.questions[4]['content'] ?? '',
         style: TextStyle(
             fontSize: 20, fontWeight: FontWeight.bold, color: Colors.yellow),
         textAlign: TextAlign.center,

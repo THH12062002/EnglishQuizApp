@@ -13,19 +13,9 @@ class ChooseLvController extends GetxController {
   Future<void> onLvEasy() async {
     var questions = await repository.getEasyQuestions();
     if (questions.isNotEmpty) {
-      for (var question in questions) {
-        questionStorage.saveQuestion(
-          ans1: question.ans1,
-          ans2: question.ans2,
-          ans3: question.ans3,
-          ans4: question.ans4,
-          point: question.point,
-          content: question.content,
-          difficulty: question.difficulty,
-          currentIndex: questions.indexOf(question),
-        );
-        Get.to(QuestionPage());
-      }
+      questionStorage
+          .saveQuestions(questions); // Lưu tất cả câu hỏi vào storage
+      Get.to(QuestionPage());
     } else {
       Get.snackbar('Thông báo', 'Không có câu hỏi ở mức độ dễ');
     }
@@ -34,19 +24,9 @@ class ChooseLvController extends GetxController {
   Future<void> onLvMedium() async {
     var questions = await repository.getMediumQuestions();
     if (questions.isNotEmpty) {
-      for (var question in questions) {
-        questionStorage.saveQuestion(
-          ans1: question.ans1,
-          ans2: question.ans2,
-          ans3: question.ans3,
-          ans4: question.ans4,
-          point: question.point,
-          content: question.content,
-          difficulty: question.difficulty,
-          currentIndex: questions.indexOf(question),
-        );
-        Get.to(QuestionPage());
-      }
+      questionStorage
+          .saveQuestions(questions); // Lưu tất cả câu hỏi vào storage
+      Get.to(QuestionPage());
     } else {
       Get.snackbar('Thông báo', 'Không có câu hỏi ở mức độ trung bình');
     }
@@ -55,19 +35,9 @@ class ChooseLvController extends GetxController {
   Future<void> onLvHard() async {
     var questions = await repository.getHardQuestions();
     if (questions.isNotEmpty) {
-      for (var question in questions) {
-        questionStorage.saveQuestion(
-          ans1: question.ans1,
-          ans2: question.ans2,
-          ans3: question.ans3,
-          ans4: question.ans4,
-          point: question.point,
-          content: question.content,
-          difficulty: question.difficulty,
-          currentIndex: questions.indexOf(question),
-        );
-        Get.to(QuestionPage());
-      }
+      questionStorage
+          .saveQuestions(questions); // Lưu tất cả câu hỏi vào storage
+      Get.to(QuestionPage());
     } else {
       Get.snackbar('Thông báo', 'Không có câu hỏi ở mức độ khó');
     }
