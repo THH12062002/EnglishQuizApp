@@ -15,7 +15,7 @@ class ChooseLvController extends GetxController {
     if (questions.isNotEmpty) {
       questionStorage
           .saveQuestions(questions); // Lưu tất cả câu hỏi vào storage
-      Get.to(QuestionPage());
+      Get.to(() => QuestionPage());
     } else {
       Get.snackbar('Thông báo', 'Không có câu hỏi ở mức độ dễ');
     }
@@ -26,7 +26,7 @@ class ChooseLvController extends GetxController {
     if (questions.isNotEmpty) {
       questionStorage
           .saveQuestions(questions); // Lưu tất cả câu hỏi vào storage
-      Get.to(QuestionPage());
+      Get.to(() => QuestionPage());
     } else {
       Get.snackbar('Thông báo', 'Không có câu hỏi ở mức độ trung bình');
     }
@@ -37,7 +37,7 @@ class ChooseLvController extends GetxController {
     if (questions.isNotEmpty) {
       questionStorage
           .saveQuestions(questions); // Lưu tất cả câu hỏi vào storage
-      Get.to(QuestionPage());
+      Get.to(() => QuestionPage());
     } else {
       Get.snackbar('Thông báo', 'Không có câu hỏi ở mức độ khó');
     }

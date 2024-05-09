@@ -40,21 +40,21 @@ class ResultPage extends StatelessWidget {
             ),
           ),
           SizedBox(height: 5),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ReviewPage(
-                    questions: questions,
-                    questionStates: questionStates,
-                    flaggedQuestions: flaggedQuestions,
-                  ),
-                ),
-              );
-            },
-            child: Text('Return to Review Screen'),
-          ),
+          // ElevatedButton(
+          //   onPressed: () {
+          //     Navigator.push(
+          //       context,
+          //       MaterialPageRoute(
+          //         builder: (context) => ReviewPage(
+          //           questions: questions,
+          //           questionStates: questionStates,
+          //           flaggedQuestions: flaggedQuestions,
+          //         ),
+          //       ),
+          //     );
+          //   },
+          //   child: Text('Return to Review Screen'),
+          // ),
           SizedBox(height: 5),
           ElevatedButton(
             onPressed: () {

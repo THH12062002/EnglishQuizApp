@@ -297,6 +297,7 @@ app.post("/login", async (req, res) =>
     }
     console.log(`Invalid email or password`);
     res.status(567).send(`Invalid email or password`);
+    return; 
 })
 
 

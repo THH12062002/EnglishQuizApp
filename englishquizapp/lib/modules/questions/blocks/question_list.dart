@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, unused_local_variable
 
 import 'package:englishquizapp/data/models/question.dart';
 import 'package:englishquizapp/data/service/question_service.dart';
@@ -30,12 +30,7 @@ class QuestionList extends StatelessWidget {
           return Center(child: Text('Error: ${snapshot.error}'));
         } else {
           List<Questions> questions = snapshot.data ?? [];
-          return QuestionViewer(
-            questions: questions,
-            questionStates:
-                questionStates, // Truyền questionStates vào QuestionViewer
-            initialIndex: initialIndex,
-          );
+          return QuestionViewer();
         }
       },
     );

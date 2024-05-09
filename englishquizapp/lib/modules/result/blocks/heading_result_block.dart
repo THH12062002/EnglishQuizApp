@@ -13,6 +13,7 @@ class HeadingResultBlock extends StatelessWidget {
         fontSize: 30,
         fontWeight: FontWeight.bold,
       ),
+      textAlign: TextAlign.center,
     );
   }
 }

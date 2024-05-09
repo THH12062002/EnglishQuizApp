@@ -25,15 +25,18 @@ class QuestionStorage extends GetxController {
   }
 
   // Phương thức để lấy danh sách các câu hỏi từ storage
-  List<Map<String, dynamic>> get questions =>
-      box.read<List<Map<String, dynamic>>>('questions') ?? [];
+  RxList<Map<String, dynamic>> get questions {
+    final List<Map<String, dynamic>> storedQuestions =
+        box.read<List<Map<String, dynamic>>>('questions') ?? [];
+    return storedQuestions.obs;
+  }
 
-  // Phương thức để lấy giá trị của một trường dữ liệu cụ thể từ một câu hỏi ở vị trí index trong danh sách
-  String? getAns1AtIndex(int index) => questions[index]['ans1'];
-  String? getAns2AtIndex(int index) => questions[index]['ans2'];
-  String? getAns3AtIndex(int index) => questions[index]['ans3'];
-  String? getAns4AtIndex(int index) => questions[index]['ans4'];
-  String? getPointAtIndex(int index) => questions[index]['point'];
-  String? getContentAtIndex(int index) => questions[index]['content'];
-  String? getDifficultyAtIndex(int index) => questions[index]['difficulty'];
+  String? getAns1AtIndex(RxInt index) => questions[index.value]['ans1'];
+  String? getAns2AtIndex(RxInt index) => questions[index.value]['ans2'];
+  String? getAns3AtIndex(RxInt index) => questions[index.value]['ans3'];
+  String? getAns4AtIndex(RxInt index) => questions[index.value]['ans4'];
+  String? getPointAtIndex(RxInt index) => questions[index.value]['point'];
+  String? getContentAtIndex(RxInt index) => questions[index.value]['content'];
+  String? getDifficultyAtIndex(RxInt index) =>
+      questions[index.value]['difficulty'];
 }

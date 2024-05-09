@@ -12,15 +12,15 @@ import 'package:flutter/material.dart';
 import 'package:englishquizapp/data/models/question.dart';
 
 class ReviewPage extends StatelessWidget {
-  final List<QuestionState> questionStates;
-  final List<Questions> questions;
-  final List<int> flaggedQuestions;
+  // final List<QuestionState> questionStates;
+  // final List<Questions> questions;
+  // final List<int> flaggedQuestions;
 
   const ReviewPage({
     super.key,
-    required this.questionStates,
-    required this.questions,
-    required this.flaggedQuestions,
+    // required this.questionStates,
+    // required this.questions,
+    // required this.flaggedQuestions,
   });
 
   @override
@@ -33,41 +33,41 @@ class ReviewPage extends StatelessWidget {
           SizedBox(height: 80),
           HeadingResultBlock(),
           SizedBox(height: 20),
-          Expanded(
-            child: ListAnswer(
-              questions: questions,
-              questionStates: questionStates,
-              flaggedQuestions: flaggedQuestions,
-              onEditPressed: (index) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => QuestionPage(
-                      questions: questions,
-                      questionStates: questionStates,
-                      initialIndex: index,
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
+          // Expanded(
+          //   child: ListAnswer(
+          //     questions: questions,
+          //     questionStates: questionStates,
+          //     flaggedQuestions: flaggedQuestions,
+          //     onEditPressed: (index) {
+          //       Navigator.push(
+          //         context,
+          //         MaterialPageRoute(
+          //           builder: (context) => QuestionPage(
+          //             questions: questions,
+          //             questionStates: questionStates,
+          //             initialIndex: index,
+          //           ),
+          //         ),
+          //       );
+          //     },
+          //   ),
+          // ),
           SizedBox(height: 30),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ResultPage(
-                    questions: questions,
-                    questionStates: questionStates,
-                    flaggedQuestions: flaggedQuestions,
-                  ),
-                ),
-              );
-            },
-            child: Text('Submit Answer'),
-          ),
+          // ElevatedButton(
+          //   onPressed: () {
+          //     Navigator.push(
+          //       context,
+          //       MaterialPageRoute(
+          //         builder: (context) => ResultPage(
+          //           questions: questions,
+          //           questionStates: questionStates,
+          //           flaggedQuestions: flaggedQuestions,
+          //         ),
+          //       ),
+          //     );
+          //   },
+          //   child: Text('Submit Answer'),
+          // ),
           SizedBox(height: 30),
         ],
       ),
