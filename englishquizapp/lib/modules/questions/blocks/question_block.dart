@@ -1,10 +1,11 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:englishquizapp/data/storage/questions_storage.dart';
+import 'package:englishquizapp/modules/questions/question_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class QuestionBlock extends StatelessWidget {
+class QuestionBlock extends GetView<QuestionController> {
   final RxInt questionIndex;
 
   const QuestionBlock({super.key, required this.questionIndex});

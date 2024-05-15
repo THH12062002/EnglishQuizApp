@@ -49,7 +49,7 @@ app.post("/records/post", async (req, res) =>
     console.log(date);
     var result = await addDoc(recordCol, 
     {
-        "username": req.body.username,
+        "email": req.body.email,
         "record": req.body.record,
         "datetime": date,
     })
@@ -68,7 +68,80 @@ app.get("/questions", async (req, res) =>
         console.log(r.data());
         listData.push(r.data());
     })
+    console.log(listData);
     res.send(listData);
+})
+
+app.get("/questions/easy", async (req, res) =>
+{
+    var result = await getDocs(query(questionCol, where("difficulty", "==", "easy")));
+    var listData = []
+    var LIMIT = 5;
+    
+    while (listData.length < LIMIT)
+    {
+        result.forEach((r) =>
+        {
+            var random = !!Math.round(Math.random());
+            if (random)
+            {
+                if(listData.push(r.data()) == LIMIT)
+                {
+                    return;
+                }
+            }
+        })
+    }
+    console.log(listData.slice(0, LIMIT).length);
+    res.status(234).send(listData.slice(0, LIMIT));
+})
+
+app.get("/questions/medium", async (req, res) =>
+    {
+        var result = await getDocs(query(questionCol, where("difficulty", "==", "medium")));
+        var listData = []
+        var LIMIT = 10;
+        
+        while (listData.length < LIMIT)
+        {
+            result.forEach((r) =>
+            {
+                var random = !!Math.round(Math.random());
+                if (random)
+                {
+                    if(listData.push(r.data()) == LIMIT)
+                    {
+                        return;
+                    }
+                }
+            })
+        }
+        console.log(listData.slice(0, LIMIT).length);
+        res.status(234).send(listData.slice(0, LIMIT))
+    })
+
+app.get("/questions/hard", async (req, res) =>
+{
+    var result = await getDocs(query(questionCol, where("difficulty", "==", "hard")));
+    var listData = []
+    var LIMIT = 15;
+    
+    while (listData.length < LIMIT)
+    {
+        result.forEach((r) =>
+        {
+            var random = !!Math.round(Math.random());
+            if (random)
+            {
+                if(listData.push(r.data()) == LIMIT)
+                {
+                    return;
+                }
+            }
+        })
+    }
+    console.log(listData.slice(0, LIMIT).length);
+    res.status(234).send(listData.slice(0, LIMIT))
 })
 
 app.post("/questions/post", async (req, res) =>
@@ -79,7 +152,6 @@ app.post("/questions/post", async (req, res) =>
         {
             "qid": req.body.qid,
             "question": req.body.question,
-            "point": req.body.point,
             "timer": req.body.timer,
             "correct_ans": req.body.correct_ans,
             "difficulty": req.body.difficulty,
@@ -90,12 +162,12 @@ app.post("/questions/post", async (req, res) =>
         }).then(()=>
         {
             console.log(`Added question with ID: ${req.body.qid} successfully!`);
-            res.status(333).send(`Added question with ID: ${req.body.qid} successfully!`);
+            res.status(234).send(`Added question with ID: ${req.body.qid} successfully!`);
         })
     }
     catch(err)
     {
-        console.log(`Required fields: (int)qid, (string)question, (int)point, (double)timer, (int)correct_ans, (string)difficulty, (string) ans1, (string)ans2, (string)ans3, (string)ans4, please check again and specify them!`);
+        console.log(`Required fields: (int)qid, (string)question, (double)timer, (int)correct_ans, (string)difficulty, (string) ans1, (string)ans2, (string)ans3, (string)ans4, please check again and specify them!`);
         res.status(567).send(`Required fields: (int)qid, (string)question, (int)point, (double)timer, (int)correct_ans, (string)difficulty, (string) ans1, (string)ans2, (string)ans3, (string)ans4, please check again and specify them!, hoi Hien di`);
     }
 })
@@ -134,52 +206,55 @@ app.get("/users", async (req, res) =>
         listData.push(r.data());
     })
     res.send(listData);
+
 })
 
 app.post("/users/register", async (req, res) =>
 {
     try
     {
-        if (!(await getDocs(query(userCol, where("username", "==", req.body.username)))).empty)
+        if (!(await getDocs(query(userCol, where("email", "==", req.body.email)))).empty)
         {
-            res.status(567).send("Username " + req.body.username + " already existed in the database");
-            console.log("Username " + req.body.username + " already exists in the database");
-            return;
+            res.status(567).send("Email " + req.body.email + " already existed in the database");
+            console.log("Email " + req.body.email + " already exists in the database");
+            //return;
         }
         var result = await addDoc(userCol,
         {
-            "username": req.body.username,
+            "email": req.body.email,
             "password": req.body.password
         })
         .then(() =>
         {
-            console.log(`Added user with username: ${req.body.username}, and password: ${req.body.password}`);
-            res.status(234).send(`Added user with username: ${req.body.username}, and password: ${req.body.password}`);
+            console.log(`Added user with Email: ${req.body.email}, and password: ${req.body.password}`);
+            // res.status(234).send(`Added user with Email: ${req.body.Email}, and password: ${req.body.password}`);
+            res.status(234).send({"email": req.body.email,
+            "password": req.body.password});
         })
     }
     catch (err)
     {
-        console.log(`Required fields: (string)username, (string)password, please specify them.`);
-        res.send(`Required fields: (string)username, (string)password, please specify them. Ko duoc nua thi hoi Hien`);
+        console.log(`Required fields: (string)password, (string)email, please specify them.`);
+        res.send(`Required fields: (string)password, (string)email, please specify them. Ko duoc nua thi hoi Hien`);
         console.log(err);
     }
 })
 
-app.delete("/delete/users/:username", async (req, res) =>
+app.delete("/delete/users/:email", async (req, res) =>
 {
     try
     {
-        var q = query(userCol, where("username", "==", req.params.username));
+        var q = query(userCol, where("email", "==", req.params.email));
         var r = (await getDocs(q)).docs.at(0);
         if (r == null) throw err;
         deleteDoc(r.ref);
-        console.log("Successfully deleted user with username: " + req.params.username);
-        res.status(234).send("Successfully deleted user with username: " + req.params.username);
+        console.log("Successfully deleted user with Email: " + req.params.email);
+        res.status(234).send("Successfully deleted user with Email: " + req.params.email);
     }
     catch
     {
-        console.log("No such username, check again");
-        res.status(567).send("No such username, check again, ko duoc thi hoi Hien`");
+        console.log("No such user with Email: " + req.params.email + ", check again");
+        res.status(567).send("No such user with Email: " + req.params.email + ", check again. Ko dc nua thi hoi Hien`");
     }
 })
 
@@ -210,17 +285,19 @@ app.delete("/delete/users/all", async (req, res) =>
 
 app.post("/login", async (req, res) =>
 {
-    var result = (await getDocs(query(userCol, where("username", "==", req.body.username)))).docs
+    var result = (await getDocs(query(userCol, where("email", "==", req.body.email)))).docs
 
 
     if (result.at(0).data().password === req.body.password)
     {
-        console.log(`Login successfully as user ${req.body.username}`);
-        res.status(234).send(`Login successfully as user ${req.body.username}`);
+        console.log(`Login successfully as user ${req.body.email}`);
+        res.status(234).send({"email": req.body.email,
+        "password": req.body.password});
         return;
     }
-    console.log(`Invalid username or password`);
-    res.status(567).send(`Invalid username or password`);
+    console.log(`Invalid email or password`);
+    res.status(567).send(`Invalid email or password`);
+    return; 
 })
 
 

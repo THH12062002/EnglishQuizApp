@@ -10,13 +10,16 @@ class QuestionStorage extends GetxController {
   void saveQuestions(List<QuestionModel> questions) {
     List<Map<String, dynamic>> questionMapList = questions
         .map((question) => {
-              'ans1': question.ans1,
-              'ans2': question.ans2,
-              'ans3': question.ans3,
-              'ans4': question.ans4,
+              'answers': [
+                question.ans1,
+                question.ans2,
+                question.ans3,
+                question.ans4,
+              ],
               'point': question.point,
               'content': question.content,
               'difficulty': question.difficulty,
+              'correct_ans': question.correct_ans,
             })
         .toList();
 
@@ -31,12 +34,12 @@ class QuestionStorage extends GetxController {
     return storedQuestions.obs;
   }
 
-  String? getAns1AtIndex(RxInt index) => questions[index.value]['ans1'];
-  String? getAns2AtIndex(RxInt index) => questions[index.value]['ans2'];
-  String? getAns3AtIndex(RxInt index) => questions[index.value]['ans3'];
-  String? getAns4AtIndex(RxInt index) => questions[index.value]['ans4'];
+  List<String>? getAnswersAtIndex(RxInt index) =>
+      questions[index.value]['answers'].cast<String>();
   String? getPointAtIndex(RxInt index) => questions[index.value]['point'];
   String? getContentAtIndex(RxInt index) => questions[index.value]['content'];
   String? getDifficultyAtIndex(RxInt index) =>
       questions[index.value]['difficulty'];
+  String? getCorrectAnswerAtIndex(RxInt index) =>
+      questions[index.value]['correct_ans'];
 }

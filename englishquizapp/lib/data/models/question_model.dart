@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_this, unnecessary_new, prefer_collection_literals
+// ignore_for_file: unnecessary_this, unnecessary_new, prefer_collection_literals, non_constant_identifier_names
 
 class QuestionModel {
   String? ans2;
@@ -8,6 +8,7 @@ class QuestionModel {
   String? content;
   String? ans4;
   String? difficulty;
+  String? correct_ans;
 
   QuestionModel(
       {this.ans2,
@@ -16,7 +17,8 @@ class QuestionModel {
       this.ans3,
       this.content,
       this.ans4,
-      this.difficulty});
+      this.difficulty,
+      this.correct_ans});
 
   QuestionModel.fromJson(Map<String, dynamic> json) {
     ans2 = json['ans2'];
@@ -26,6 +28,7 @@ class QuestionModel {
     content = json['content'];
     ans4 = json['ans4'];
     difficulty = json['difficulty'];
+    correct_ans = json['correct_ans'];
   }
 
   Map<String, dynamic> toJson() {
@@ -37,6 +40,7 @@ class QuestionModel {
     data['content'] = this.content;
     data['ans4'] = this.ans4;
     data['difficulty'] = this.difficulty;
+    data['correct_ans'] = this.correct_ans;
     return data;
   }
 }

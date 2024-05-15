@@ -1,82 +1,44 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:englishquizapp/modules/questions/blocks/question_state.dart';
+import 'package:englishquizapp/data/storage/questions_storage.dart';
+import 'package:englishquizapp/modules/questions/question_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:englishquizapp/data/models/question.dart';
+import 'package:get/get.dart';
 
 class ListAnswer extends StatelessWidget {
-  final List<Questions> questions;
-  final List<QuestionState> questionStates;
-  final List<int> flaggedQuestions;
-  final Function(int) onEditPressed;
+  const ListAnswer({super.key});
 
-  const ListAnswer({
-    Key? key,
-    required this.questions,
-    required this.questionStates,
-    required this.flaggedQuestions,
-    required this.onEditPressed,
-  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: questions.length,
-      itemBuilder: (context, index) {
-        final question = questions[index];
-        final selectedAnswerIndex = questionStates[index].selectedAnswerIndex;
-        final selectedAnswer = selectedAnswerIndex != null &&
-                selectedAnswerIndex >= 0 &&
-                selectedAnswerIndex < question.answers.length
-            ? question.answers[selectedAnswerIndex]
-            : 'Chưa chọn';
+    final controller = Get.find<QuestionController>();
+    QuestionStorage questionStorage = QuestionStorage();
 
-        return Card(
-          elevation: 2,
-          margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-          child: Padding(
-            padding: EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Text(
-                      'Question ${index + 1}',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
-                    ),
-                    SizedBox(width: 8),
-                    if (flaggedQuestions.contains(index))
-                      Icon(Icons.flag, color: Colors.yellow),
-                    SizedBox(width: 8),
-                    IconButton(
-                      icon: Icon(Icons.edit), // Icon chỉnh sửa
-                      onPressed: () {
-                        // Khi nút chỉnh sửa được nhấn, gọi hàm callback onEditPressed
-                        onEditPressed(index);
-                      },
-                    ),
-                  ],
-                ),
-                SizedBox(height: 8),
-                Text(
-                  question.content,
-                  style: TextStyle(fontSize: 16),
-                ),
-                SizedBox(height: 8),
-                Text(
-                  'Your Answer: $selectedAnswer',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
+    return Obx(
+      () => ListView.builder(
+        itemCount: controller.questions.length,
+        itemBuilder: (context, index) {
+          final selectedAnswerIndex = controller.getSelectedAnswerIndex(index);
+          final selectedAnswer = selectedAnswerIndex != null
+              ? controller.answersList[selectedAnswerIndex]
+              : 'Chưa có';
+
+          final correctAnswer =
+              questionStorage.getCorrectAnswerAtIndex(RxInt(index));
+
+          return Card(
+            child: ListTile(
+              title: Text('Question ${index + 1}:'),
+              subtitle: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Selected Answer: $selectedAnswer'),
+                  Text('Correct Answer: $correctAnswer'),
+                ],
+              ),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }
