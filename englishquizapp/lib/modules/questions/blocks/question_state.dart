@@ -3,11 +3,11 @@
 class QuestionState {
   int questionIndex;
   int? selectedAnswerIndex;
-  bool? isFlagged; // Chức năng đánh dấu
+  bool? isFlagged;
 
   QuestionState({
     required this.questionIndex,
     this.selectedAnswerIndex,
-    this.isFlagged = false, // Khởi tạo mặc định là không đánh dấu
+    this.isFlagged,
   });
 }

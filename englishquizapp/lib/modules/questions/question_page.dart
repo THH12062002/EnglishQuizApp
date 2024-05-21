@@ -35,12 +35,6 @@ class QuestionPage extends GetView<QuestionController> {
               const SizedBox(height: 50),
               const ToolsBlock(),
               const SizedBox(height: 180),
-              // QuestionList(
-              //   questions: questions,
-              //   questionStates:
-              //       questionStates, // Truyền questionStates vào QuestionList
-              //   initialIndex: initialIndex,
-              // ),
               QuestionViewer(),
               const SizedBox(height: 20),
               TextButton(

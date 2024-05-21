@@ -1,6 +1,5 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:englishquizapp/data/storage/questions_storage.dart';
 import 'package:englishquizapp/modules/questions/question_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,7 +11,6 @@ class QuestionBlock extends GetView<QuestionController> {
 
   @override
   Widget build(BuildContext context) {
-    QuestionStorage userStorage = Get.find<QuestionStorage>();
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10.0),
       child: Obx(
@@ -33,12 +31,10 @@ class QuestionBlock extends GetView<QuestionController> {
                     color: Color.fromARGB(235, 115, 102, 251)),
               ),
             ),
-            SizedBox(
-              width: 20,
-            ),
+            SizedBox(width: 20),
             Expanded(
               child: Text(
-                userStorage.questions[questionIndex.value]['content'],
+                controller.getQuestionContent(questionIndex.value),
                 style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,

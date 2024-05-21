@@ -8,36 +8,42 @@ class AnswerBlock extends StatelessWidget {
   final RxInt questionIndex;
 
   const AnswerBlock({
-    Key? key,
+    super.key,
     required this.questionIndex,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<QuestionController>();
 
     return Obx(
-      () => Column(
-        children: List.generate(
-          controller.answersList.length,
-          (index) => RadioListTile<int?>(
-            value: index,
-            groupValue: controller.getSelectedAnswerIndex(
-                questionIndex.value), // Update groupValue
-            onChanged: (int? value) {
-              if (value != null) {
-                controller.saveQuestionState(questionIndex.value,
-                    value); // Save the selected answer for this question
-                controller.selectAnswer(value); // Handle the answer selection
-              }
-            },
-            title: Text(
-              controller.answersList[index],
-              style: TextStyle(fontSize: 18),
+      () {
+        // Get the shuffled answers for the current question
+        List<String> answersList =
+            controller.shuffledAnswersLists[questionIndex.value]?.toList() ??
+                [];
+
+        return Column(
+          children: List.generate(
+            answersList.length,
+            (index) => RadioListTile<int?>(
+              value: index,
+              groupValue:
+                  controller.getSelectedAnswerIndex(questionIndex.value),
+              onChanged: (int? value) {
+                if (value != null) {
+                  controller.saveQuestionState(questionIndex.value, value);
+                  controller.selectAnswer(value);
+                }
+              },
+              title: Text(
+                answersList[index],
+                style: TextStyle(fontSize: 18),
+              ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }
