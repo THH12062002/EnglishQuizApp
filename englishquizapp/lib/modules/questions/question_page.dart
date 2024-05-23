@@ -1,7 +1,5 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:englishquizapp/data/models/question.dart';
-import 'package:englishquizapp/modules/questions/blocks/question_state.dart';
 import 'package:englishquizapp/modules/questions/blocks/question_viewer.dart';
 import 'package:englishquizapp/modules/questions/blocks/tools_block.dart';
 import 'package:englishquizapp/modules/questions/question_controller.dart';
@@ -9,19 +7,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class QuestionPage extends GetView<QuestionController> {
-  final List<Questions>? questions;
-  final List<QuestionState>? questionStates;
-  final int? initialIndex;
-
-  const QuestionPage({
-    super.key,
-    this.questions,
-    this.questionStates,
-    this.initialIndex,
-  });
+  const QuestionPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    Future.delayed(Duration.zero, () {
+      // Call loadQuestions after a short delay
+      controller.loadQuestions();
+    });
+
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(

@@ -1,5 +1,3 @@
-// question_storage.dart
-
 import 'package:englishquizapp/data/models/question_model.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -29,9 +27,15 @@ class QuestionStorage extends GetxController {
 
   // Phương thức để lấy danh sách các câu hỏi từ storage
   RxList<Map<String, dynamic>> get questions {
-    final List<Map<String, dynamic>> storedQuestions =
-        box.read<List<Map<String, dynamic>>>('questions') ?? [];
-    return storedQuestions.obs;
+    final storedQuestions = box.read<List<dynamic>>('questions') ?? [];
+
+    // Chuyển đổi danh sách đọc được thành List<Map<String, dynamic>>
+    List<Map<String, dynamic>> questionMapList =
+        storedQuestions.map((question) {
+      return Map<String, dynamic>.from(question);
+    }).toList();
+
+    return questionMapList.obs;
   }
 
   List<String>? getAnswersAtIndex(RxInt index) =>

@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:englishquizapp/data/storage/questions_storage.dart';
 import 'package:englishquizapp/modules/questions/blocks/question_state.dart';
 import 'package:englishquizapp/modules/review/review_page.dart';
@@ -11,7 +9,7 @@ class QuestionController extends GetxController {
   RxInt currentIndex = 0.obs;
   RxInt score = 0.obs;
   RxBool isCurrentQuestionFlagged = false.obs;
-  QuestionStorage questionStorage = QuestionStorage();
+  QuestionStorage questionStorage = Get.find<QuestionStorage>();
   final RxList<String> answersList = <String>[].obs;
   RxMap<int, RxList<String>> shuffledAnswersLists =
       RxMap<int, RxList<String>>();
@@ -19,7 +17,7 @@ class QuestionController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    loadQuestions();
+    loadQuestions(); // Load câu hỏi khi controller được khởi tạo
   }
 
   void loadQuestions() {
@@ -97,7 +95,7 @@ class QuestionController extends GetxController {
       questionStates[currentIndex.value] = newQuestionState;
 
       String? correctAnswer =
-          questionStorage.getCorrectAnswerAtIndex(currentIndex);
+          questionStorage.getCorrectAnswerAtIndex(RxInt(currentIndex.value));
       List<String>? answers =
           shuffledAnswersLists[currentIndex.value]?.toList();
 
