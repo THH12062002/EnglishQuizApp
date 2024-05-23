@@ -11,9 +11,7 @@ class QuestionController extends GetxController {
   RxInt currentIndex = 0.obs;
   RxInt score = 0.obs;
   RxBool isCurrentQuestionFlagged = false.obs;
-
   QuestionStorage questionStorage = QuestionStorage();
-
   final RxList<String> answersList = <String>[].obs;
   RxMap<int, RxList<String>> shuffledAnswersLists =
       RxMap<int, RxList<String>>();

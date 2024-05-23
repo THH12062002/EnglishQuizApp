@@ -1,7 +1,7 @@
 var express = require( 'express' );
 var cors = require ('cors');
 var { initializeApp } =  require ( "firebase/app" );
-var { collection, getFirestore, getDoc, getDocs, addDoc, query, doc, where, deleteDoc } = require ("firebase/firestore");
+var { collection, getFirestore, getDoc, getDocs, addDoc, query, doc, where, deleteDoc, updateDoc } = require ("firebase/firestore");
 
 
 var app = express();
@@ -207,6 +207,42 @@ app.get("/users", async (req, res) =>
     })
     res.send(listData);
 
+})
+
+app.get("/users/:email", async (req, res) =>{
+    var result = await getDocs(query(userCol, where("email", "==", req.params.email)));
+    res.send(result.docs.at(0).data())
+})
+
+app.put("/users/:email", async (req, res) =>
+{
+    try
+    {
+        var result = await getDocs(query(userCol, where("email", "==", req.params.email)))
+        var id;
+        if (result.empty)
+        {
+            res.status(456).send("No username with email " + req.params.email);
+            return
+        }
+        result.forEach((doc) => {
+            id = doc.id;
+        })
+        //var result = (await getDocs(query(userCol, where("email", "==", req.params.email)))).docs.at(0);
+        await updateDoc(doc(userCol, id), {
+            "email": req.params.email,
+            "password": req.body.password,
+            "username": req.body.username,
+        }).then(()=> {
+            res.send("Successfully updated user with email " + req.params.email + " to username " + req.body.username);
+            console.log(("Successfully updated user with email " + req.params.email + " to username " + req.body.username));
+        });
+    }
+    catch(e)
+    {
+        console.log(e)
+        res.send("Body must contain 'password', 'username' fields");
+    }
 })
 
 app.post("/users/register", async (req, res) =>
