@@ -209,10 +209,21 @@ app.get("/users", async (req, res) =>
 
 })
 
-app.get("/users/:email", async (req, res) =>{
-    var result = await getDocs(query(userCol, where("email", "==", req.params.email)));
-    res.send(result.docs.at(0).data())
-})
+    app.get("/users/:email", async (req, res) => {
+    try {
+        const result = await getDocs(query(userCol, where("email", "==", req.params.email)));
+        if (result.empty) {
+            res.status(567).send(`No user found with email: ${req.params.email}`);
+            return;
+        }
+        const user = result.docs[0].data();
+        res.status(234).send(user);
+    } catch (err) {
+        console.error("Error retrieving user:", err);
+        res.status(567).send("An error occurred while retrieving the user.");
+    }
+});
+
 
 app.put("/users/:email", async (req, res) =>
 {
@@ -222,7 +233,7 @@ app.put("/users/:email", async (req, res) =>
         var id;
         if (result.empty)
         {
-            res.status(456).send("No username with email " + req.params.email);
+            res.status(567).send("No username with email " + req.params.email);
             return
         }
         result.forEach((doc) => {
@@ -234,7 +245,7 @@ app.put("/users/:email", async (req, res) =>
             "password": req.body.password,
             "username": req.body.username,
         }).then(()=> {
-            res.send("Successfully updated user with email " + req.params.email + " to username " + req.body.username);
+            res.status(234).send("Successfully updated user with email " + req.params.email + " to username " + req.body.username);
             console.log(("Successfully updated user with email " + req.params.email + " to username " + req.body.username));
         });
     }
@@ -245,36 +256,39 @@ app.put("/users/:email", async (req, res) =>
     }
 })
 
-app.post("/users/register", async (req, res) =>
-{
-    try
-    {
-        if (!(await getDocs(query(userCol, where("email", "==", req.body.email)))).empty)
-        {
-            res.status(567).send("Email " + req.body.email + " already existed in the database");
-            console.log("Email " + req.body.email + " already exists in the database");
-            //return;
+app.post("/users/register", async (req, res) => {
+    try {
+        const { email, password, username } = req.body;
+
+        // Check if email already exists
+        if (!(await getDocs(query(userCol, where("email", "==", email)))).empty) {
+            res.status(567).send("Email " + email + " already exists in the database");
+            console.log("Email " + email + " already exists in the database");
+            return;
         }
-        var result = await addDoc(userCol,
-        {
-            "email": req.body.email,
-            "password": req.body.password
-        })
-        .then(() =>
-        {
-            console.log(`Added user with Email: ${req.body.email}, and password: ${req.body.password}`);
-            // res.status(234).send(`Added user with Email: ${req.body.Email}, and password: ${req.body.password}`);
-            res.status(234).send({"email": req.body.email,
-            "password": req.body.password});
-        })
-    }
-    catch (err)
-    {
-        console.log(`Required fields: (string)password, (string)email, please specify them.`);
-        res.send(`Required fields: (string)password, (string)email, please specify them. Ko duoc nua thi hoi Hien`);
+
+        // Check if username already exists
+        if (!(await getDocs(query(userCol, where("username", "==", username)))).empty) {
+            res.status(567).send("Username " + username + " already exists in the database");
+            console.log("Username " + username + " already exists in the database");
+            return;
+        }
+
+        // Add new user
+        var result = await addDoc(userCol, {
+            email: email,
+            password: password,
+            username: username
+        });
+
+        console.log(`Added user with Email: ${email}, Password: ${password}, and Username: ${username}`);
+        res.status(234).send({ email, password, username });
+    } catch (err) {
+        console.log(`Required fields: (string)email, (string)password, (string)username, please specify them.`);
+        res.send(`Required fields: (string)email, (string)password, (string)username, please specify them. If you have any issues, please contact support.`);
         console.log(err);
     }
-})
+});
 
 app.delete("/delete/users/:email", async (req, res) =>
 {

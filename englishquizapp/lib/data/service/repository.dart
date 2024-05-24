@@ -14,23 +14,44 @@ class Repository {
           'password': password,
         },
       );
+
       if (response.statusCode == 234) {
-        if (response.data != null) {
-          return User.fromJson(response.data);
+        final userDetailsResponse = await Api().get('${ApiUrl.getUser}/$email');
+        if (userDetailsResponse.statusCode == 234) {
+          return User.fromJson(userDetailsResponse.data);
         }
       }
-      return User();
+
+      return null; // Return null if login or user details fetch fails
     } catch (e) {
       Get.snackbar("Thông báo", "Thông tin đăng nhập không chính xác");
+      return null;
     }
-    return null;
   }
 
-  Future<User> registerUser(String email, String password) async {
+  // Future<User?> getUserByEmail(String email) async {
+  //   try {
+  //     final response = await Api().get('${ApiUrl.getUser}/$email');
+  //     if (response.statusCode == 234) {
+  //       if (response.data != null) {
+  //         return User.fromJson(response.data);
+  //       }
+  //     }
+  //     Get.snackbar("Thông báo", "Không tìm thấy thông tin người dùng");
+  //     return null;
+  //   } catch (e) {
+  //     Get.snackbar("Thông báo", "Đã xảy ra lỗi khi lấy thông tin người dùng");
+  //     return null;
+  //   }
+  // }
+
+  Future<User> registerUser(
+      String username, String email, String password) async {
     try {
       final response = await Api().post(
         ApiUrl.register,
         data: {
+          'username': username,
           'email': email,
           'password': password,
         },
@@ -40,7 +61,6 @@ class Repository {
           return User.fromJson(response.data);
         }
       }
-
       return User();
     } catch (e) {
       throw Exception(e.toString());

@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HomePage extends StatelessWidget {
-  HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +33,7 @@ class HomePage extends StatelessWidget {
               PlayBtnBlock(),
               SizedBox(height: 20),
               LogoutBlock(),
+              Text("Welcome ${userStorage.username}"),
               Text("Welcome ${userStorage.userEmail}"),
               Text("Welcome ${userStorage.userPassword}")
             ],

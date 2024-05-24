@@ -1,5 +1,4 @@
 import 'package:englishquizapp/modules/login/widgets/email_widget.dart';
-import 'package:englishquizapp/modules/login/widgets/forgot_widget.dart';
 import 'package:englishquizapp/modules/login/widgets/login_widget.dart';
 import 'package:englishquizapp/modules/login/widgets/password_widget.dart';
 import 'package:englishquizapp/modules/login/widgets/signup_widget.dart';
@@ -25,7 +24,7 @@ class FormBlock extends StatelessWidget {
           EmailWidget(),
           SizedBox(height: 16),
           PasswordWidget(),
-          ForgotWidget(),
+          // ForgotWidget(),
           SizedBox(height: 20),
           LoginWidget(),
           SizedBox(height: 30),

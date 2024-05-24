@@ -13,14 +13,16 @@ class SignUpPage extends StatelessWidget {
           color: Color.fromARGB(235, 115, 102, 251),
         ),
         child: const SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(height: 80),
-              LogoBlock(),
-              SizedBox(height: 75),
-              FormBlock(),
-            ],
+          child: Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(height: 60),
+                LogoBlock(),
+                SizedBox(height: 50),
+                FormBlock(),
+              ],
+            ),
           ),
         ),
       ),

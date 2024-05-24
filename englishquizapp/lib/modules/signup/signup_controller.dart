@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 class SignUpController extends GetxController {
   final UserStorage userStorage = Get.put<UserStorage>(UserStorage());
 
+  TextEditingController usernameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
@@ -16,19 +17,24 @@ class SignUpController extends GetxController {
   Future<void> onSignUp() async {
     final String email = emailController.text;
     final String password = passwordController.text;
+    final String username = usernameController.text;
     final String confirmPassword = confirmPasswordController.text;
 
-    if (email.isNotEmpty || password.isNotEmpty || confirmPassword.isNotEmpty) {
+    if (username.isNotEmpty &&
+        email.isNotEmpty &&
+        password.isNotEmpty &&
+        confirmPassword.isNotEmpty) {
       if (password != confirmPassword) {
         Get.snackbar('Thông báo', 'Mật khẩu không khớp');
         return;
       } else {
-        var user = await repository.registerUser(email, password);
-        if (user.email != null &&
+        var user = await repository.registerUser(username, email, password);
+        if (user.username != null &&
+            user.email != null &&
             user.password != null &&
             password == confirmPassword) {
           Get.snackbar('Thông báo', 'Đăng ký thành công');
-          userStorage.saveUser(email, password);
+          //userStorage.saveUser(email, password);
           Get.toNamed('/login');
         } else {
           Get.snackbar('Thông báo', 'Đăng ký thất bại');
