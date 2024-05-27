@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:englishquizapp/modules/result/blocks/heading_result_block.dart';
 import 'package:englishquizapp/modules/result/result_page.dart';
 import 'package:englishquizapp/modules/review/blocks/list_answer.dart';
@@ -17,12 +15,12 @@ class ReviewPage extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           SizedBox(height: 80),
-          HeadingResultBlock(), // Heading block của bạn
+          HeadingResultBlock(), // Heading block
           SizedBox(height: 20),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: ListAnswer(), // Sử dụng ListAnswer
+              child: ListAnswer(), // Use ListAnswer
             ),
           ),
           Padding(

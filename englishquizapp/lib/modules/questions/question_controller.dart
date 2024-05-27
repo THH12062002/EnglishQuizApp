@@ -22,9 +22,10 @@ class QuestionController extends GetxController {
 
   void loadQuestions() {
     questions = questionStorage.questions;
-    questionStates.clear();
-    questionStates.addAll(List.generate(
-        questions.length, (index) => QuestionState(questionIndex: index)));
+    if (questionStates.isEmpty) {
+      questionStates.addAll(List.generate(
+          questions.length, (index) => QuestionState(questionIndex: index)));
+    }
     shuffleAndDisplayCurrentQuestionAnswers();
     ever(currentIndex, (_) => shuffleAndDisplayCurrentQuestionAnswers());
     ever(currentIndex, (_) => updateFlaggedStateForCurrentQuestion());
@@ -35,6 +36,12 @@ class QuestionController extends GetxController {
     score.value = 0;
     isCurrentQuestionFlagged.value = false;
     shuffledAnswersLists.clear();
+
+    // Reset questionStates to initial state
+    questionStates.clear();
+    questionStates.addAll(List.generate(
+        questions.length, (index) => QuestionState(questionIndex: index)));
+
     loadQuestions();
   }
 

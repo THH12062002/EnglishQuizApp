@@ -40,6 +40,8 @@ class ListAnswer extends StatelessWidget {
           return GestureDetector(
             onTap: () {
               controller.currentIndex.value = index; // Update current index
+              controller
+                  .shuffleAndDisplayCurrentQuestionAnswers(); // Shuffle answers
               Get.to(QuestionPage());
             },
             child: Stack(
