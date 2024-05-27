@@ -34,19 +34,23 @@ class ListResult extends StatelessWidget {
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 8),
-                  Text('Selected Answer: ${selectedAnswer ?? 'None'}'),
+                  Text(
+                    'Your Answer: ${selectedAnswer ?? 'None'}',
+                    style:
+                        TextStyle(color: isCorrect ? Colors.green : Colors.red),
+                  ),
                   Text(
                     'Correct Answer: $correctAnswer',
                     style: TextStyle(color: Colors.green),
                   ),
                   SizedBox(height: 8),
-                  Text(
-                    isCorrect ? 'Correct' : 'Incorrect',
-                    style: TextStyle(
-                      color: isCorrect ? Colors.green : Colors.red,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                  // Text(
+                  //   isCorrect ? 'Correct' : 'Incorrect',
+                  //   style: TextStyle(
+                  //     color: isCorrect ? Colors.green : Colors.red,
+                  //     fontWeight: FontWeight.bold,
+                  //   ),
+                  // ),
                 ],
               ),
             ),

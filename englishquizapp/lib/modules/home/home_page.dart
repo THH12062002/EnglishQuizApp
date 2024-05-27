@@ -1,19 +1,17 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-import 'package:englishquizapp/data/storage/user_storage.dart';
 import 'package:englishquizapp/modules/home/blocks/logo_block.dart';
 import 'package:englishquizapp/modules/home/blocks/logout_block.dart';
 import 'package:englishquizapp/modules/home/blocks/playbtn_block.dart';
 import 'package:englishquizapp/modules/home/blocks/title_block.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    UserStorage userStorage = Get.find<UserStorage>();
+    //UserStorage userStorage = Get.find<UserStorage>();
 
     return Scaffold(
       body: Container(
@@ -25,7 +23,7 @@ class HomePage extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              SizedBox(height: 70),
+              SizedBox(height: 60),
               TitleBlock(),
               SizedBox(height: 180),
               LogoBlock(),
@@ -33,9 +31,6 @@ class HomePage extends StatelessWidget {
               PlayBtnBlock(),
               SizedBox(height: 20),
               LogoutBlock(),
-              Text("Welcome ${userStorage.username}"),
-              Text("Welcome ${userStorage.userEmail}"),
-              Text("Welcome ${userStorage.userPassword}")
             ],
           ),
         ),
