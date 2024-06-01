@@ -1,6 +1,10 @@
+// ignore_for_file: prefer_const_constructors
+
+import 'package:englishquizapp/modules/questions/question_controller.dart';
 import 'package:englishquizapp/modules/result/blocks/heading_result_block.dart';
 import 'package:englishquizapp/modules/result/result_page.dart';
 import 'package:englishquizapp/modules/review/blocks/list_answer.dart';
+import 'package:englishquizapp/modules/review/blocks/time_block.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -9,12 +13,15 @@ class ReviewPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<QuestionController>();
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 115, 102, 251),
       body: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          SizedBox(height: 80),
+          SizedBox(height: 50),
+          TimeBlock(), // Include the TimeBlock widget at the top
+          SizedBox(height: 30),
           HeadingResultBlock(), // Heading block
           SizedBox(height: 20),
           Expanded(
@@ -27,6 +34,7 @@ class ReviewPage extends StatelessWidget {
             padding: const EdgeInsets.all(16.0),
             child: ElevatedButton(
               onPressed: () {
+                controller.endQuiz();
                 Get.to(() => ResultPage()); // Navigate to ResultPage
               },
               style: ElevatedButton.styleFrom(

@@ -1,5 +1,5 @@
 class ApiUrl {
-  static String baseUrl = 'http://10.102.72.120:8080';
+  static String baseUrl = 'http://192.168.1.7:8080';
   static String login = '$baseUrl/login';
   static String getUser = '$baseUrl/users';
   static String register = '$baseUrl/users/register';

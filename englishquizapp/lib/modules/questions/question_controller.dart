@@ -1,5 +1,9 @@
+// ignore_for_file: prefer_const_constructors
+
+import 'dart:async';
 import 'package:englishquizapp/data/storage/questions_storage.dart';
 import 'package:englishquizapp/modules/questions/blocks/question_state.dart';
+import 'package:englishquizapp/modules/result/result_page.dart';
 import 'package:englishquizapp/modules/review/review_page.dart';
 import 'package:get/get.dart';
 
@@ -9,15 +13,74 @@ class QuestionController extends GetxController {
   RxInt currentIndex = 0.obs;
   RxInt score = 0.obs;
   RxBool isCurrentQuestionFlagged = false.obs;
-  QuestionStorage questionStorage = Get.find<QuestionStorage>();
+  QuestionStorage questionStorage = Get.put<QuestionStorage>(QuestionStorage());
   final RxList<String> answersList = <String>[].obs;
   RxMap<int, RxList<String>> shuffledAnswersLists =
       RxMap<int, RxList<String>>();
+  RxInt countdownSeconds = 0.obs;
+  Timer? countdownTimer;
 
   @override
   void onInit() {
     super.onInit();
-    loadQuestions(); // Load câu hỏi khi controller được khởi tạo
+    loadQuestions(); // Load questions when the controller is initialized
+  }
+
+  void setCountdownDuration(String difficulty) {
+    switch (difficulty) {
+      case 'easy':
+        countdownSeconds.value = 100;
+        break;
+      case 'medium':
+        countdownSeconds.value = 200;
+        break;
+      case 'hard':
+        countdownSeconds.value = 300;
+        break;
+      default:
+        countdownSeconds.value = 0;
+    }
+  }
+
+  void startQuiz(String difficulty) {
+    setCountdownDuration(difficulty);
+    startCountdown();
+    resetQuiz(); // Reset the quiz state when starting a new quiz
+  }
+
+  void endQuiz() {
+    stopCountdown();
+  }
+
+  void startCountdown() {
+    countdownTimer?.cancel();
+    countdownTimer = Timer.periodic(Duration(seconds: 1), (timer) {
+      if (countdownSeconds.value > 0) {
+        countdownSeconds.value--;
+      } else {
+        timer.cancel();
+        Get.to(() => ResultPage());
+      }
+    });
+  }
+
+  void stopCountdown() {
+    countdownTimer?.cancel();
+  }
+
+  @override
+  void onClose() {
+    stopCountdown();
+    super.onClose();
+  }
+
+  void resetQuiz() {
+    currentIndex.value = 0;
+    score.value = 0;
+    isCurrentQuestionFlagged.value = false;
+    shuffledAnswersLists.clear();
+    questionStates.clear(); // Clear the states of previous questions
+    loadQuestions();
   }
 
   void loadQuestions() {
@@ -29,20 +92,6 @@ class QuestionController extends GetxController {
     shuffleAndDisplayCurrentQuestionAnswers();
     ever(currentIndex, (_) => shuffleAndDisplayCurrentQuestionAnswers());
     ever(currentIndex, (_) => updateFlaggedStateForCurrentQuestion());
-  }
-
-  void resetQuiz() {
-    currentIndex.value = 0;
-    score.value = 0;
-    isCurrentQuestionFlagged.value = false;
-    shuffledAnswersLists.clear();
-
-    // Reset questionStates to initial state
-    questionStates.clear();
-    questionStates.addAll(List.generate(
-        questions.length, (index) => QuestionState(questionIndex: index)));
-
-    loadQuestions();
   }
 
   void moveToNextQuestion() {
@@ -174,7 +223,6 @@ class QuestionController extends GetxController {
     return questionStorage.getCorrectAnswerAtIndex(RxInt(questionIndex)) ?? '';
   }
 
-  // Add method to get the total number of questions
   int getTotalQuestions() {
     return questions.length;
   }

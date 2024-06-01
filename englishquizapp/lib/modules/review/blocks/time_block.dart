@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ToolsBlock extends StatelessWidget {
-  const ToolsBlock({super.key});
+class TimeBlock extends StatelessWidget {
+  const TimeBlock({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,16 +12,7 @@ class ToolsBlock extends StatelessWidget {
 
     return Row(
       children: [
-        const SizedBox(width: 20),
-        Obx(() => Text(
-              'Question: ${controller.currentIndex.value + 1}/${controller.getTotalQuestions()}',
-              style: GoogleFonts.lato(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Colors.yellow,
-              ),
-            )),
-        const SizedBox(width: 60),
+        const SizedBox(width: 130),
         Row(
           children: [
             const Icon(Icons.timer_outlined, color: Colors.yellow, size: 30),

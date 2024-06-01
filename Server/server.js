@@ -341,8 +341,9 @@ app.post("/login", async (req, res) =>
     if (result.at(0).data().password === req.body.password)
     {
         console.log(`Login successfully as user ${req.body.email}`);
-        res.status(234).send({"email": req.body.email,
-        "password": req.body.password});
+        // res.status(234).send({"email": req.body.email,
+        // "password": req.body.password});
+        res.status(234).send();
         return;
     }
     console.log(`Invalid email or password`);
