@@ -7,7 +7,7 @@ class HeadingReviewtBlock extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      'Review your result',
+      'Review your answers',
       style: GoogleFonts.raleway(
         color: Colors.white,
         fontSize: 30,

@@ -1,38 +1,38 @@
-// ignore_for_file: prefer_const_constructors, unused_local_variable
+// // ignore_for_file: prefer_const_constructors, unused_local_variable
 
-import 'package:englishquizapp/data/models/question.dart';
-import 'package:englishquizapp/data/service/question_service.dart';
-import 'package:englishquizapp/modules/questions/blocks/question_state.dart';
-import 'package:englishquizapp/modules/questions/blocks/question_viewer.dart';
-import 'package:flutter/material.dart';
+// import 'package:englishquizapp/data/models/question.dart';
+// import 'package:englishquizapp/data/service/question_service.dart';
+// import 'package:englishquizapp/modules/questions/blocks/question_state.dart';
+// import 'package:englishquizapp/modules/questions/blocks/question_viewer.dart';
+// import 'package:flutter/material.dart';
 
-class QuestionList extends StatelessWidget {
-  final QuestionService _questionService = QuestionService();
-  final List<Questions>? questions;
-  final List<QuestionState>? questionStates;
-  final int? initialIndex;
+// class QuestionList extends StatelessWidget {
+//   final QuestionService _questionService = QuestionService();
+//   final List<Questions>? questions;
+//   final List<QuestionState>? questionStates;
+//   final int? initialIndex;
 
-  QuestionList({
-    super.key,
-    this.questions,
-    this.questionStates,
-    this.initialIndex,
-  });
+//   QuestionList({
+//     super.key,
+//     this.questions,
+//     this.questionStates,
+//     this.initialIndex,
+//   });
 
-  @override
-  Widget build(BuildContext context) {
-    return FutureBuilder<List<Questions>>(
-      future: _questionService.getQuestionsFromFirebase(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(child: CircularProgressIndicator());
-        } else if (snapshot.hasError) {
-          return Center(child: Text('Error: ${snapshot.error}'));
-        } else {
-          List<Questions> questions = snapshot.data ?? [];
-          return QuestionViewer();
-        }
-      },
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return FutureBuilder<List<Questions>>(
+//       future: _questionService.getQuestionsFromFirebase(),
+//       builder: (context, snapshot) {
+//         if (snapshot.connectionState == ConnectionState.waiting) {
+//           return Center(child: CircularProgressIndicator());
+//         } else if (snapshot.hasError) {
+//           return Center(child: Text('Error: ${snapshot.error}'));
+//         } else {
+//           List<Questions> questions = snapshot.data ?? [];
+//           return QuestionViewer();
+//         }
+//       },
+//     );
+//   }
+// }

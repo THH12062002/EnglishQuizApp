@@ -1,6 +1,8 @@
 // result_page.dart
 // ignore_for_file: prefer_const_constructors
 
+import 'package:englishquizapp/modules/home/home_page.dart';
+import 'package:englishquizapp/modules/records/record_page.dart';
 import 'package:flutter/material.dart';
 import 'package:englishquizapp/modules/choose_lv/chooselv_page.dart';
 import 'package:englishquizapp/modules/result/blocks/heading_result_block.dart';
@@ -20,9 +22,9 @@ class ResultPage extends StatelessWidget {
       body: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          SizedBox(height: 80),
+          SizedBox(height: 30),
           HeadingResultBlock(),
-          SizedBox(height: 20),
+          SizedBox(height: 5),
           Expanded(
             child: ListResult(),
           ),
@@ -43,13 +45,43 @@ class ResultPage extends StatelessWidget {
               color: Colors.white,
             ),
           ),
-          SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: () {
-              controller.resetQuiz();
-              Get.to(() => ChooseLvPage());
-            },
-            child: Text('Restart Quiz'),
+          SizedBox(height: 10),
+          Column(
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  Get.to(HomePage());
+                },
+                child: Text('Back to Home'),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      Get.to(RecordPage());
+                    },
+                    child: Text('Show Your Records'),
+                  ),
+                  SizedBox(width: 10),
+                  // ElevatedButton(
+                  //   onPressed: () {
+                  //     controller.resetQuiz();
+                  //     Get.to(() => ChooseLvPage());
+                  //   },
+                  //   child: Text('Home'),
+                  // ),
+                  SizedBox(width: 10),
+                  ElevatedButton(
+                    onPressed: () {
+                      controller.resetQuiz();
+                      Get.to(() => ChooseLvPage());
+                    },
+                    child: Text('Restart Quiz'),
+                  ),
+                ],
+              ),
+            ],
           ),
           SizedBox(height: 20),
         ],

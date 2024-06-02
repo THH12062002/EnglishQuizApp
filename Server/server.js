@@ -40,20 +40,33 @@ app.get("/records", async (req, res) =>
         console.log(r.data());
         listData.push(r.data());
     })
-    res.send(listData);
+    res.status(234).send(listData);
 })
 
-app.post("/records/post", async (req, res) =>
-{
-    var date = Date();
-    console.log(date);
-    var result = await addDoc(recordCol, 
-    {
-        "email": req.body.email,
-        "record": req.body.record,
-        "datetime": date,
-    })
-})
+app.get("/records/:email", async (req, res) => {
+    var results = (await getDocs(query(recordCol, where("email", "==", req.params.email)))).docs.map(doc => doc.data());
+    if (results.length === 0) {
+        res.status(567).send(`No records for email ${req.params.email}`);
+        return;
+    }
+    res.status(234).send(results);
+});
+
+    app.post("/records/post", async (req, res) => {
+        try {
+            var result = await addDoc(recordCol, {
+                "email": req.body.email,
+                "score": req.body.score,
+                "difficulty": req.body.difficulty,
+                "datetime": req.body.datetime,
+            });
+            console.log(`Added record with Email: ${req.body.email}, Score: ${req.body.score}, Difficulty: ${req.body.difficulty}, and Datetime: ${req.body.datetime}`);
+            res.status(200).send(result);
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ message: 'An error occurred', error: error.toString() });
+        }
+    });
 
 // ----------------------------------------------------------------------------------------------------------------------------------
 // ----------------------------------------------------------------------------------------------------------------------------------

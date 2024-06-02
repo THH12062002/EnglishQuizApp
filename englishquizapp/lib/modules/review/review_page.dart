@@ -1,8 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:englishquizapp/modules/questions/question_controller.dart';
-import 'package:englishquizapp/modules/result/blocks/heading_result_block.dart';
 import 'package:englishquizapp/modules/result/result_page.dart';
+import 'package:englishquizapp/modules/review/blocks/heading_review_block.dart';
 import 'package:englishquizapp/modules/review/blocks/list_answer.dart';
 import 'package:englishquizapp/modules/review/blocks/time_block.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +22,7 @@ class ReviewPage extends StatelessWidget {
           SizedBox(height: 50),
           TimeBlock(), // Include the TimeBlock widget at the top
           SizedBox(height: 30),
-          HeadingResultBlock(), // Heading block
+          HeadingReviewtBlock(), // Heading block
           SizedBox(height: 20),
           Expanded(
             child: Padding(
