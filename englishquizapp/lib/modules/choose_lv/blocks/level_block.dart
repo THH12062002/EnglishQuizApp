@@ -2,6 +2,7 @@
 
 import 'package:englishquizapp/modules/choose_lv/chooselv_controller.dart';
 import 'package:englishquizapp/modules/choose_lv/widgets/level_widget.dart';
+import 'package:englishquizapp/modules/home/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -18,11 +19,12 @@ class LevelBlock extends GetView<ChooseLvController> {
         SizedBox(height: 40),
         LevelWidget(level: 'Hard', difficulty: "onHardLv"),
         SizedBox(height: 80),
-        TextButton(
-            onPressed: () {
-              Get.toNamed('/home');
-            },
-            child: Text('Back to Home')),
+        ElevatedButton(
+          onPressed: () {
+            Get.to(() => HomePage());
+          },
+          child: Text('Back to Home'),
+        ),
       ],
     );
   }

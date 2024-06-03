@@ -1,16 +1,18 @@
 class Record {
   String? email;
-  String? score;
+  String? score; // Thay đổi từ String sang int
   String? difficulty;
   String? datetime;
 
   Record({this.email, this.score, this.difficulty, this.datetime});
 
-  Record.fromJson(Map<String, dynamic> json) {
-    email = json['email'];
-    score = json['score'];
-    difficulty = json['difficulty'];
-    datetime = json['datetime'];
+  factory Record.fromJson(Map<String, dynamic> json) {
+    return Record(
+      email: json['email'],
+      score: json['score'], // Không cần chuyển đổi nếu API trả về int
+      difficulty: json['difficulty'],
+      datetime: json['datetime'],
+    );
   }
 
   Map<String, dynamic> toJson() {

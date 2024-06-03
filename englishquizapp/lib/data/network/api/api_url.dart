@@ -7,4 +7,5 @@ class ApiUrl {
   static String getEasyQuestions = '$baseUrl/questions/easy';
   static String getMediumQuestions = '$baseUrl/questions/medium';
   static String getHardQuestions = '$baseUrl/questions/hard';
+  static String postRecord = '$baseUrl/records/post';
 }

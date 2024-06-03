@@ -23,7 +23,7 @@ class ReviewPage extends StatelessWidget {
           TimeBlock(), // Include the TimeBlock widget at the top
           SizedBox(height: 30),
           HeadingReviewtBlock(), // Heading block
-          SizedBox(height: 20),
+          SizedBox(height: 70),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -33,8 +33,9 @@ class ReviewPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: ElevatedButton(
-              onPressed: () {
-                controller.endQuiz();
+              onPressed: () async {
+                controller.submitRecord();
+                controller.endQuiz(); // Call submitRecord
                 Get.to(() => ResultPage()); // Navigate to ResultPage
               },
               style: ElevatedButton.styleFrom(

@@ -3,9 +3,10 @@
 import 'package:englishquizapp/modules/records/record_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart'; // Add this import for DateFormat
 
 class ListRecord extends StatelessWidget {
-  const ListRecord({super.key});
+  const ListRecord({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,16 +20,27 @@ class ListRecord extends StatelessWidget {
             children: [
               Expanded(
                 child: Obx(() {
-                  return DropdownButton<String>(
-                    value: recordController.selectedDifficulty.value,
-                    onChanged: (value) {
-                      if (value != null) {
-                        recordController.updateDifficulty(value);
-                      }
+                  return PopupMenuButton<String>(
+                    onSelected: (value) {
+                      recordController.updateDifficulty(value);
                     },
-                    items: <String>['All', 'Easy', 'Medium', 'Hard']
-                        .map<DropdownMenuItem<String>>((String value) {
-                      return DropdownMenuItem<String>(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 5.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(recordController.selectedDifficulty.value),
+                          Icon(Icons.arrow_drop_down),
+                        ],
+                      ),
+                    ),
+                    itemBuilder: (context) => <String>[
+                      'All',
+                      'Easy',
+                      'Medium',
+                      'Hard'
+                    ].map<PopupMenuEntry<String>>((String value) {
+                      return PopupMenuItem<String>(
                         value: value,
                         child: Text(value),
                       );
@@ -38,14 +50,26 @@ class ListRecord extends StatelessWidget {
               ),
               SizedBox(width: 16),
               Expanded(
-                child: TextField(
-                  decoration: InputDecoration(
-                    hintText: 'Enter date (YYYY-MM-DD)',
-                  ),
-                  onChanged: (value) {
-                    recordController.updateDate(value);
-                  },
-                ),
+                child: Obx(() {
+                  return ElevatedButton(
+                    onPressed: () async {
+                      DateTime? pickedDate = await showDatePicker(
+                        context: context,
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime(2000),
+                        lastDate: DateTime(2100),
+                      );
+                      if (pickedDate != null) {
+                        String formattedDate =
+                            DateFormat('dd-MM-yyyy').format(pickedDate);
+                        recordController.updateDate(formattedDate);
+                      }
+                    },
+                    child: Text(recordController.selectedDate.isEmpty
+                        ? 'Select Date'
+                        : recordController.selectedDate.value),
+                  );
+                }),
               ),
             ],
           ),

@@ -44,13 +44,15 @@ app.get("/records", async (req, res) =>
 })
 
 app.get("/records/:email", async (req, res) => {
-    var results = (await getDocs(query(recordCol, where("email", "==", req.params.email)))).docs.map(doc => doc.data());
-    if (results.length === 0) {
-        res.status(567).send(`No records for email ${req.params.email}`);
-        return;
+    try {
+        var results = (await getDocs(query(recordCol, where("email", "==", req.params.email)))).docs.map(doc => doc.data());
+        res.status(234).send(results);
+    } catch (error) {
+        console.error(error);
+        res.status(567).json({ message: 'An error occurred', error: error.toString() });
     }
-    res.status(234).send(results);
 });
+
 
     app.post("/records/post", async (req, res) => {
         try {
@@ -61,10 +63,10 @@ app.get("/records/:email", async (req, res) => {
                 "datetime": req.body.datetime,
             });
             console.log(`Added record with Email: ${req.body.email}, Score: ${req.body.score}, Difficulty: ${req.body.difficulty}, and Datetime: ${req.body.datetime}`);
-            res.status(200).send(result);
+            res.status(234).send();
         } catch (error) {
             console.error(error);
-            res.status(500).json({ message: 'An error occurred', error: error.toString() });
+            res.status(567).json({ message: 'An error occurred', error: error.toString() });
         }
     });
 

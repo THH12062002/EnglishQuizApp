@@ -1,6 +1,7 @@
 // result_page.dart
 // ignore_for_file: prefer_const_constructors
 
+import 'package:englishquizapp/data/service/repository.dart';
 import 'package:englishquizapp/modules/home/home_page.dart';
 import 'package:englishquizapp/modules/records/record_page.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,7 @@ class ResultPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<QuestionController>();
-
+    Repository repository = Get.put(Repository());
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 115, 102, 251),
       body: Column(
@@ -59,7 +60,8 @@ class ResultPage extends StatelessWidget {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      Get.to(RecordPage());
+                      repository.getRecords();
+                      Get.to(() => RecordPage());
                     },
                     child: Text('Show Your Records'),
                   ),

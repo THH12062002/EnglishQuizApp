@@ -20,12 +20,10 @@ class RecordController extends GetxController {
     List<Record> allRecords = recordStorage.records;
 
     if (selectedDifficulty.value != 'All') {
-      // Chuẩn hóa giá trị difficulty được chọn từ dropdown
       String normalizedSelectedDifficulty =
           selectedDifficulty.value.toLowerCase();
 
       allRecords = allRecords.where((record) {
-        // Chuẩn hóa giá trị difficulty của record
         String normalizedRecordDifficulty =
             record.difficulty?.toLowerCase() ?? '';
 

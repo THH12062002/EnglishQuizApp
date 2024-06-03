@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 //import 'package:flutter/material.dart';
 
 class Questions {
@@ -25,19 +24,5 @@ class Questions {
         'difficulty': difficulty,
       };
 
-  factory Questions.fromDocumentSnapshot(DocumentSnapshot snapshot) {
-    var data = snapshot.data() as Map<String, dynamic>;
-    return Questions(
-      content: data['content'] ?? '',
-      answers: List<String>.from(data['answers'] ?? []),
-      difficulty: data['difficulty'] ?? '',
-    );
-  }
+  //
 }
-
-// class QuestionState {
-//   final int questionIndex;
-//   final int? selectedAnswerIndex;
-
-//   QuestionState({required this.questionIndex, this.selectedAnswerIndex});
-// }

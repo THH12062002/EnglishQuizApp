@@ -22,7 +22,7 @@ class QuestionViewer extends StatelessWidget {
         ),
         SizedBox(height: 20),
         AnswerBlock(questionIndex: controller.currentIndex),
-        SizedBox(height: 20),
+        SizedBox(height: 80),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

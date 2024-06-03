@@ -1,14 +1,20 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'dart:async';
+
+import 'package:englishquizapp/data/storage/user_storage.dart';
+import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import 'package:englishquizapp/data/service/repository.dart';
 import 'package:englishquizapp/data/storage/questions_storage.dart';
 import 'package:englishquizapp/modules/questions/blocks/question_state.dart';
 import 'package:englishquizapp/modules/result/result_page.dart';
 import 'package:englishquizapp/modules/review/review_page.dart';
-import 'package:get/get.dart';
 
 class QuestionController extends GetxController {
+  final Repository repository = Repository();
   late RxList<Map<String, dynamic>> questions;
+  UserStorage userStorage = Get.find<UserStorage>();
   RxList<QuestionState> questionStates = <QuestionState>[].obs;
   RxInt currentIndex = 0.obs;
   RxInt score = 0.obs;
@@ -19,6 +25,14 @@ class QuestionController extends GetxController {
       RxMap<int, RxList<String>>();
   RxInt countdownSeconds = 0.obs;
   Timer? countdownTimer;
+
+  Future<void> submitRecord() async {
+    String email = userStorage.userEmail;
+    String difficulty = questionStorage.getDifficultyAtIndex(0.obs)!;
+    String datetime = DateFormat('dd-MM-yyyy').format(DateTime.now().toLocal());
+    await repository.postRecord(
+        email, score.value.toString(), difficulty, datetime);
+  }
 
   @override
   void onInit() {
@@ -54,11 +68,12 @@ class QuestionController extends GetxController {
 
   void startCountdown() {
     countdownTimer?.cancel();
-    countdownTimer = Timer.periodic(Duration(seconds: 1), (timer) {
+    countdownTimer = Timer.periodic(Duration(seconds: 1), (timer) async {
       if (countdownSeconds.value > 0) {
         countdownSeconds.value--;
       } else {
         timer.cancel();
+        await submitRecord();
         Get.to(() => ResultPage());
       }
     });

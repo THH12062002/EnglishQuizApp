@@ -6,21 +6,23 @@ class RecordStorage extends GetxController {
   final box = GetStorage();
 
   void saveRecord(List<Record> records) {
-    List<Map<String, dynamic>> recordMapList =
-        records.map((record) => record.toJson()).toList();
+    List<Map<String, dynamic>> recordMapList = records
+        .map((record) => {
+              'email': record.email,
+              'score': record.score,
+              'difficulty': record.difficulty,
+              'datetime': record.datetime,
+            })
+        .toList();
+
     box.write('records', recordMapList);
   }
 
-  List<Record> get records {
+  RxList<Record> get records {
     final storedRecords = box.read<List<dynamic>>('records') ?? [];
-
-    return storedRecords.map((record) {
-      return Record.fromJson(Map<String, dynamic>.from(record));
-    }).toList();
+    return storedRecords
+        .map((data) => Record.fromJson(Map<String, dynamic>.from(data)))
+        .toList()
+        .obs;
   }
-
-  String get email => box.read('email') ?? '';
-  String get score => box.read('score') ?? '';
-  String get difficulty => box.read('difficulty') ?? '';
-  String get datetime => box.read("datetime") ?? '';
 }

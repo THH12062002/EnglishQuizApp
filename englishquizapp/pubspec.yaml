@@ -43,6 +43,7 @@ dependencies:
   get: ^4.6.6
   curl_logger_dio_interceptor: ^1.0.0
   get_storage: ^2.1.1
+  intl: ^0.19.0
 
 dev_dependencies:
   flutter_test:
@@ -68,6 +69,11 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/logo.png
+    - assets/images/home_page.jpg
+    - assets/images/chooselv.jpg
+    - assets/images/question.jpg
+    - assets/images/review.jpg
+    - assets/images/result.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

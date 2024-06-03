@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:englishquizapp/modules/questions/blocks/question_viewer.dart';
 import 'package:englishquizapp/modules/questions/blocks/tools_block.dart';
@@ -26,24 +26,10 @@ class QuestionPage extends GetView<QuestionController> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const SizedBox(height: 50),
+              const SizedBox(height: 70),
               const ToolsBlock(),
-              const SizedBox(height: 180),
+              const SizedBox(height: 130),
               QuestionViewer(),
-              const SizedBox(height: 20),
-              TextButton(
-                onPressed: () {
-                  Get.toNamed('/chooselv');
-                },
-                child: const Text(
-                  'Back to Home',
-                  style: TextStyle(
-                    color: Colors.yellow,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              )
             ],
           ),
         ),
