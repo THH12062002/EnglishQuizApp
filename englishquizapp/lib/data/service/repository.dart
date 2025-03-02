@@ -1,4 +1,4 @@
-import 'package:englishquizapp/data/models/question_model.dart';
+import 'package:englishquizapp/data/models/question.dart';
 import 'package:englishquizapp/data/models/user.dart';
 import 'package:englishquizapp/data/network/api/api_url.dart';
 import 'package:englishquizapp/data/network/api/dio_client.dart';
@@ -59,15 +59,14 @@ class Repository {
     }
   }
 
-  Future<List<QuestionModel>> getEasyQuestions() async {
+  Future<List<Question>> getEasyQuestions() async {
     try {
       final response = await Api().get(ApiUrl.getEasyQuestions);
       if (response.statusCode == 234) {
         if (response.data != null) {
           List<dynamic> questionDataList = response.data;
-          List<QuestionModel> questions = questionDataList
-              .map((data) => QuestionModel.fromJson(data))
-              .toList();
+          List<Question> questions =
+              questionDataList.map((data) => Question.fromJson(data)).toList();
           return questions;
         }
       }
@@ -77,15 +76,14 @@ class Repository {
     }
   }
 
-  Future<List<QuestionModel>> getMediumQuestions() async {
+  Future<List<Question>> getMediumQuestions() async {
     try {
       final response = await Api().get(ApiUrl.getMediumQuestions);
       if (response.statusCode == 234) {
         if (response.data != null) {
           List<dynamic> questionDataList = response.data;
-          List<QuestionModel> questions = questionDataList
-              .map((data) => QuestionModel.fromJson(data))
-              .toList();
+          List<Question> questions =
+              questionDataList.map((data) => Question.fromJson(data)).toList();
           return questions;
         }
       }
@@ -95,15 +93,14 @@ class Repository {
     }
   }
 
-  Future<List<QuestionModel>> getHardQuestions() async {
+  Future<List<Question>> getHardQuestions() async {
     try {
       final response = await Api().get(ApiUrl.getHardQuestions);
       if (response.statusCode == 234) {
         if (response.data != null) {
           List<dynamic> questionDataList = response.data;
-          List<QuestionModel> questions = questionDataList
-              .map((data) => QuestionModel.fromJson(data))
-              .toList();
+          List<Question> questions =
+              questionDataList.map((data) => Question.fromJson(data)).toList();
           return questions;
         }
       }

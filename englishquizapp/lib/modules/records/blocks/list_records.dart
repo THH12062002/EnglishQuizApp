@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart'; // Add this import for DateFormat
 
 class ListRecord extends StatelessWidget {
-  const ListRecord({Key? key});
+  const ListRecord({super.key});
 
   @override
   Widget build(BuildContext context) {

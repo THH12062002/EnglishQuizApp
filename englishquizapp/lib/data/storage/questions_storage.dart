@@ -1,11 +1,11 @@
-import 'package:englishquizapp/data/models/question_model.dart';
+import 'package:englishquizapp/data/models/question.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 class QuestionStorage extends GetxController {
   final box = GetStorage();
 
-  void saveQuestions(List<QuestionModel> questions) {
+  void saveQuestions(List<Question> questions) {
     List<Map<String, dynamic>> questionMapList = questions
         .map((question) => {
               'answers': [
@@ -38,12 +38,28 @@ class QuestionStorage extends GetxController {
     return questionMapList.obs;
   }
 
-  List<String>? getAnswersAtIndex(RxInt index) =>
-      questions[index.value]['answers'].cast<String>();
-  String? getPointAtIndex(RxInt index) => questions[index.value]['point'];
-  String? getContentAtIndex(RxInt index) => questions[index.value]['content'];
-  String? getDifficultyAtIndex(RxInt index) =>
-      questions[index.value]['difficulty'];
-  String? getCorrectAnswerAtIndex(RxInt index) =>
-      questions[index.value]['correct_ans'];
+  List<String>? getAnswersAtIndex(RxInt index) {
+    if (questions.isEmpty || index.value >= questions.length) return null;
+    return questions[index.value]['answers'].cast<String>();
+  }
+
+  String? getPointAtIndex(RxInt index) {
+    if (questions.isEmpty || index.value >= questions.length) return null;
+    return questions[index.value]['point'];
+  }
+
+  String? getContentAtIndex(RxInt index) {
+    if (questions.isEmpty || index.value >= questions.length) return null;
+    return questions[index.value]['content'];
+  }
+
+  String? getDifficultyAtIndex(RxInt index) {
+    if (questions.isEmpty || index.value >= questions.length) return null;
+    return questions[index.value]['difficulty'];
+  }
+
+  String? getCorrectAnswerAtIndex(RxInt index) {
+    if (questions.isEmpty || index.value >= questions.length) return null;
+    return questions[index.value]['correct_ans'];
+  }
 }

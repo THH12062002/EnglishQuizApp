@@ -1,11 +1,11 @@
 import 'package:englishquizapp/data/service/repository.dart';
-import 'package:englishquizapp/data/storage/user_storage.dart';
+// import 'package:englishquizapp/data/storage/user_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class SignUpController extends GetxController {
-  final UserStorage userStorage = Get.put<UserStorage>(UserStorage());
+  // final UserStorage userStorage = Get.put<UserStorage>(UserStorage());
 
   TextEditingController usernameController = TextEditingController();
   TextEditingController emailController = TextEditingController();

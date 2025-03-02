@@ -10,7 +10,6 @@ class Api {
   }) {
     final dio = Dio(
       BaseOptions(
-        // baseUrl: "http://192.168.22.10:8000/",
         receiveTimeout: const Duration(seconds: 15), // 15 seconds
         connectTimeout: const Duration(seconds: 15),
         sendTimeout: const Duration(seconds: 15),

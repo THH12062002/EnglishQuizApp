@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 class ChooseLvPage extends StatelessWidget {
   const ChooseLvPage({super.key});
 
-  //final void Function() ;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

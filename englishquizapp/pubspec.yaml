@@ -36,14 +36,15 @@ dependencies:
   cupertino_icons: ^1.0.8
   google_fonts: ^6.2.1
   timer_count_down: ^2.2.2
-  firebase_core: ^2.30.0
-  cloud_firestore: ^4.17.0
+  firebase_core: ^3.12.1
+  cloud_firestore: ^5.6.5
   flutter_screenutil: ^5.9.0
   dio: ^5.4.3+1
   get: ^4.6.6
   curl_logger_dio_interceptor: ^1.0.0
   get_storage: ^2.1.1
-  intl: ^0.19.0
+  intl: ^0.20.2
+  dcdg: ^4.1.0
 
 dev_dependencies:
   flutter_test:
@@ -54,7 +55,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^3.0.0
+  flutter_lints: ^5.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
